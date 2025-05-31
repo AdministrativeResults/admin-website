@@ -6,12 +6,19 @@
   <title>AR64A H-Harness Patrol Rig | ADMINISTRATIVE RESULTS</title>
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet" />
+
   <style>
     :root {
       --bg-dark: #111;
       --text-light: #eee;
       --accent: #e4ac45;
       --font-sans: 'Oswald', sans-serif;
+      --header-footer-bg: #333; /* Dark grey instead of black */
+    }
+
+    /* Enable smooth scrolling for anchor links */
+    html {
+      scroll-behavior: smooth;
     }
 
     * {
@@ -30,7 +37,9 @@
       text-decoration: none;
     }
 
-    /* Header */
+    /* --------------------
+       Header (logo + nav)
+       -------------------- */
     header {
       position: fixed;
       top: 0;
@@ -40,17 +49,16 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      background: #000;
+      background: var(--header-footer-bg);
       z-index: 100;
     }
-    /* Wrap logo image + text in a link back to #hero */
     header .logo-link {
       display: flex;
       align-items: center;
       text-decoration: none;
     }
     header .logo-link img {
-      height: 40px;        /* adjust to your logo’s height */
+      height: 40px; /* adjust as needed */
       width: auto;
       margin-right: 0.5rem;
     }
@@ -75,7 +83,7 @@
       color: var(--text-light);
     }
 
-    /* =============================== 
+    /* ===============================
        Hero Section (Mux HLS background)
        =============================== */
     #hero {
@@ -156,7 +164,7 @@
       }
     }
 
-    /* =============================== 
+    /* ===============================
        Features Section (model background + two blocks)
        =============================== */
     #features {
@@ -235,14 +243,14 @@
       }
     }
 
-    /* =============================== 
-       Features List Section (full­-width white)
+    /* ===============================
+       Features List Section (full‐width white)
        =============================== */
     #features-list {
       width: 100vw;                 /* cover entire viewport width */
       margin-left: 50%;             /* nudge left by half its width */
       transform: translateX(-50%);  /* recenter */
-      background: #fff !important;  /* full-width white behind everything */
+      background: #fff !important;  /* full‐width white behind everything */
       padding: 3rem 2rem 1.5rem;    /* original padding */
     }
     #features-list .container {
@@ -278,8 +286,8 @@
       }
     }
 
-    /* =============================== 
-       Rig Description Section 
+    /* ===============================
+       Rig Description Section
        =============================== */
     #rig-info {
       background: #fff;
@@ -324,7 +332,9 @@
       }
     }
 
-    /* History Section */
+    /* ===============================
+       History Section
+       =============================== */
     #history {
       position: relative;
       padding: 6rem 2rem;
@@ -355,18 +365,31 @@
       font-size: 1rem;
     }
 
-    /* Footer */
+    /* ===============================
+       Footer
+       =============================== */
     footer {
-      background: #000;
+      background: var(--header-footer-bg);
       padding: 2rem;
       text-align: center;
       color: var(--text-light);
     }
     footer nav a {
       margin: 0 1rem;
+      color: var(--text-light);
     }
     footer p {
       margin-top: 1rem;
+    }
+    /* Footer logo button styles */
+    footer .footer-logo {
+      display: inline-block;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+    footer .footer-logo img {
+      height: 40px;
+      width: auto;
     }
 
     /* Mobile (≤768px) tweaks for header nav */
@@ -379,7 +402,7 @@
         position: absolute;
         top: 100%;
         left: 0;
-        background: #000;
+        background: var(--header-footer-bg);
         width: 100%;
         flex-direction: column;
       }
@@ -495,6 +518,13 @@
 
   <!-- Footer -->
   <footer>
+    <!-- Footer logo that scrolls to top (#hero) -->
+    <div class="footer-logo">
+      <a href="#hero">
+        <img src="assets/images/logo.png" alt="Back to top" />
+      </a>
+    </div>
+
     <nav>
       <a href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig">Buy Now</a> |
       <a href="https://www.youtube.com/@AdministrativeResults">YouTube</a> |
