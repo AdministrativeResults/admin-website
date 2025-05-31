@@ -25,6 +25,14 @@
       --card-bg: #fff;
       --card-border-radius: 0.5rem;
       --card-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+      /* Mid‐tone grey to match the strip between the white cards and footer */
+      --mid-grey: #111111;
+    }
+
+    /* Enable smooth scrolling for anchor links */
+    html {
+      scroll-behavior: smooth;
     }
 
     * {
@@ -56,7 +64,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      background: #000;
+      background: var(--mid-grey);
       z-index: 100;
     }
     header .logo-link {
@@ -205,11 +213,21 @@
        Footer
        =============================== */
     footer {
-      background: #000;
+      background: var(--mid-grey);
       padding: 2rem;
       text-align: center;
       color: var(--text-light);
       margin-top: 2rem;
+    }
+    /* Footer logo that scrolls to top (#hero) */
+    footer .footer-logo {
+      display: inline-block;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+    footer .footer-logo img {
+      height: 40px;
+      width: auto;
     }
     footer nav a {
       margin: 0 1rem;
@@ -233,7 +251,7 @@
         position: absolute;
         top: 100%;
         left: 0;
-        background: #000;
+        background: var(--mid-grey);
         width: 100%;
         flex-direction: column;
       }
@@ -251,8 +269,7 @@
 <body>
   <!-- Header -->
   <header>
-    <a href="index.html" class="logo-link">
-      <!-- Replace with your actual logo file path: -->
+    <a href="#hero" class="logo-link">
       <img src="assets/images/logo.png" alt="Administrative Results Logo" />
       <span class="logo-text">ADMINISTRATIVE RESULTS</span>
     </a>
@@ -327,6 +344,13 @@
 
   <!-- Footer -->
   <footer>
+    <!-- Footer logo that scrolls to top (#hero) -->
+    <div class="footer-logo">
+      <a href="#hero">
+        <img src="assets/images/logo.png" alt="Back to top" />
+      </a>
+    </div>
+
     <nav>
       <a href="index.html">Home</a> |
       <a href="videos.html">Videos</a> |
