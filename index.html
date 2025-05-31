@@ -111,28 +111,47 @@
 
     /* Rig Description Section */
     #rig-info {
-      background: #fff;
-      /* top halved to 2rem, sides 2rem, bottom stays 4rem */
-      padding: 2rem 2rem 4rem;
-    }
-    #rig-info .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    /* Updated "placeholder" rules to display the actual image */
-    #rig-info .placeholder {
-      width: 45%;
-      height: auto;
-      object-fit: cover;
-      display: block;
-      border-radius: 0.5rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-    #rig-info .description { width: 50%; color: #000; padding-left: 2rem; }
-    #rig-info .description p { font-size: 1rem; line-height: 1.6; }
+  background: #fff;
+  padding: 2rem 2rem 4rem;
+}
+#rig-info .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#rig-info .placeholder {
+  width: 45%;
+  aspect-ratio: 16 / 9;  /* forces 16∶9 ratio */
+  object-fit: cover;
+  display: block;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+#rig-info .description {
+  width: 50%;
+  color: #000;           /* ensure black text everywhere */
+  padding-left: 2rem;
+}
+#rig-info .description p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Remove or override any column‐stacking at 768px */
+
+/* If you still want a slight change at very small widths, do this: */
+@media (max-width: 480px) {
+  #rig-info .container {
+    flex-direction: column;
+  }
+  #rig-info .placeholder,
+  #rig-info .description {
+    width: 100%;
+    padding: 0;
+  }
+}
 
     /* History Section */
     #history { position: relative; padding: 6rem 2rem; }
@@ -212,10 +231,17 @@
     </div>
   </section>
 
-  <!-- Rig Description (with the new back-side image) -->
+  <!-- Rig Description (now with YouTube video instead of an image) -->
   <section id="rig-info">
     <div class="container">
-      <img src="assets/images/rig-back-description.jpg" alt="Rig Back Description" class="placeholder">
+      <!-- REPLACED: the <img> tag with an <iframe> embed. -->
+      <iframe
+        class="placeholder"
+        src="https://www.youtube.com/embed/8O5GJyV7OtE?si=WdW7rTwCsDY4Chd8"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
       <div class="description" style="line-height: 1.8;">
         <p>The AR64A was redesigned from the ground up — stronger stitching, better elastic, upgraded buckles. It works. It carries everything you need and nothing you don’t. Mags, belt-fed drums, two 2-quart canteens. Radio. Admin. General-purpose junk. It fits.</p>
         <p>It’s meant to be worn over armor or under a pack. The straps adjust to accommodate the end user.</p>
