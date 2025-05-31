@@ -8,110 +8,90 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-  --bg-dark: #111;
-  --text-light: #eee;
-  --accent: #e4ac45; /* updated to match your yellow */
-  --font-sans: 'Oswald', sans-serif;
-}
+      --bg-dark: #111;
+      --text-light: #eee;
+      --accent: #e4ac45; /* updated to match your yellow */
+      --font-sans: 'Oswald', sans-serif;
+    }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: var(--bg-dark); color: var(--text-light); font-family: var(--font-sans); overflow-x: hidden; }
     a { color: var(--accent); text-decoration: none; }
 
     /* Header */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: #000; /* solid black like screenshot */
-  z-index: 100;
-}
-header .logo {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: var(--text-light);
-}
-header nav a {
-  margin-left: 1.5rem;
-  font-weight: 500;
-  color: var(--text-light);
-}
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: #000; /* solid black */
+      z-index: 100;
+    }
+    header .logo {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: var(--text-light);
+    }
+    .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; color: var(--text-light); }
+    header nav { display: flex; }
+    header nav a { margin-left: 1.5rem; font-weight: 500; color: var(--text-light); }
 
-/* Hero Section */
-#hero {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  margin-top: 4rem;
-}
-#hero video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-#hero .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width:100%;
-  height:100%;
-  z-index:1;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  background: rgba(0,0,0,0.3);
-  text-align:center;
-  padding:0 1rem;
-}
-#hero .overlay h1 {
-  color:#fff;
-  font-size:3rem;
-  margin-bottom:.5rem;
-}
-#hero .overlay p {
-  color:#ddd;
-  font-size:1.25rem;
-  margin-bottom:1rem;
-  max-width: 90%;
-}
-#hero .overlay .btn {
-  background: var(--accent);
-  color:#000;
-  padding:0.6rem 1.2rem;
-  font-weight:bold;
-  border:none;
-  cursor:pointer;
-  font-size:1rem;
-  text-decoration: none;
-}
-
-/* Mobile-specific adjustments */
-@media (max-width: 768px) {
-  #hero .overlay h1 {
-    font-size: 1.5rem;
-  }
-  #hero .overlay p {
-    font-size: 0.9rem;
-    line-height: 1.2;
-    margin-bottom: 0.8rem;
-  }
-  #hero .overlay .btn {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-  }
-}
-
-
+    /* Hero Section */
+    #hero {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      margin-top: 4rem;
+    }
+    #hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #hero .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width:100%;
+      height:100%;
+      z-index:1;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,0,0,0.3);
+      text-align:center;
+      padding:0 1rem;
+    }
+    #hero .overlay h1 {
+      color:#fff;
+      font-size:3rem;
+      margin-bottom:.5rem;
+    }
+    #hero .overlay p {
+      color:#ddd;
+      font-size:1.25rem;
+      margin-bottom:1rem;
+      max-width: 90%;
+    }
+    #hero .overlay .btn {
+      background: var(--accent);
+      color:#000;
+      padding:0.6rem 1.2rem;
+      font-weight:bold;
+      border:none;
+      cursor:pointer;
+      font-size:1rem;
+      text-decoration: none;
+    }
 
     /* Simplified Features Section */
     #features { position: relative; width: 100%; overflow: hidden; background: #fff; margin-top: 0; }
@@ -136,21 +116,21 @@ header nav a {
       padding: 2rem 2rem 4rem;
     }
     #rig-info .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
     /* Updated "placeholder" rules to display the actual image */
     #rig-info .placeholder {
-  width: 45%;
-  height: auto;
-  object-fit: cover;
-  display: block;
-  border-radius: 0.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
+      width: 45%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+      border-radius: 0.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
     #rig-info .description { width: 50%; color: #000; padding-left: 2rem; }
     #rig-info .description p { font-size: 1rem; line-height: 1.6; }
 
@@ -166,7 +146,17 @@ header nav a {
     footer nav a { margin: 0 1rem; }
     footer p { margin-top: 1rem; }
 
+    /* Mobile-specific adjustments */
     @media(max-width: 768px) {
+      .menu-toggle { display: block; }
+      header nav { display: none; position: absolute; top: 100%; left: 0; background: #000; width: 100%; flex-direction: column; }
+      header nav a { padding: 1rem; border-bottom: 1px solid #222; margin: 0; }
+      header nav.active { display: flex; }
+
+      #hero .overlay h1 { font-size: 1.5rem; }
+      #hero .overlay p { font-size: 0.9rem; line-height: 1.2; margin-bottom: 0.8rem; }
+      #hero .overlay .btn { font-size: 0.9rem; padding: 0.5rem 1rem; }
+
       #features img.rig { width: 50%; right: 50%; transform: translate(50%, -50%); }
       #rig-info .container { flex-direction: column; }
       #rig-info .placeholder, #rig-info .description { width: 100%; padding: 0; }
@@ -179,13 +169,13 @@ header nav a {
 <body>
   <header>
     <div class="logo">ADMINISTRATIVE RESULTS</div>
-    <nav>
+    <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    <nav id="mobileMenu">
       <a href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig">Buy</a>
       <a href="videos.html">Videos</a>
       <a href="service.html">Customer Service</a>
     </nav>
   </header>
-  
 
   <!-- Hero -->
   <section id="hero">
@@ -194,7 +184,6 @@ header nav a {
       <h1>AR64A H-Harness Patrol Rig</h1>
       <p>The ultimate patrol rig engineered for elite mercenary operations. Lightweight, modular, and built to perform under the harshest conditions.</p>
       <a class="btn" href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig">Get Yours Now</a>
-
     </div>
   </section>
 
@@ -208,16 +197,16 @@ header nav a {
   <section id="features-list">
     <div class="container">
       <div class="feature">
-        <h3>Magazine Fit</h3>
-        <p>The AR64A can hold any type of magazine, including belt-fed machine gun drums.</p>
+        <h3>Universal Magazine Compatibility</h3>
+        <p>Fits any mag you run—including belt-fed machine gun drums.</p>
       </div>
       <div class="feature">
-        <h3>Designed for Work</h3>
-        <p>Redesigned with improved stitching, modern elastic, upgraded buckles, and more for ultimate patrol.</p>
+        <h3>Built for Patrol</h3>
+        <p>Overhauled design featuring reinforced stitching, modern elastic, and upgraded buckles for durability.</p>
       </div>
       <div class="feature">
-        <h3>Fit</h3>
-        <p>Designed to wear with a pack or over body armor. Fully adjustable straps accommodate any user.</p>
+        <h3>Versatile Load Capacity</h3>
+        <p>Two saddlebags fit dual 2-quart canteens, plus extra pouches for admin gear, radios, and general-purpose storage.</p>
       </div>
     </div>
   </section>
@@ -226,12 +215,11 @@ header nav a {
   <section id="rig-info">
     <div class="container">
       <img src="assets/images/rig-back-description.jpg" alt="Rig Back Description" class="placeholder">
-      <div class="description">
-        <p>The AR64A has been re-designed and overhauled with improved stitching, modern elastic, upgraded buckles, and more. The AR64A H-Harness is the ultimate patrolling harness. The AR64A can hold any type of magazine to include belt-fed machine gun drum magazines. In addition, it has two side saddlebags that can carry 2 x two quartz water canteens while out on patrol with additional administrative, radio, and general-purpose pouches.</p>
-        <p>The AR64A H-Harness was designed to be worn with a pack or over slick body armor. The straps are fully adjustable to accommodate the end user.</p>
-        <p>This is the last H-Harness you may ever buy. Dump Pouch and additional gear not included.</p>
-        <p>The Black accents on the Ranger Green is not the final product*</p>
-        
+      <div class="description" style="line-height: 1.8;">
+        <p>The AR64A was redesigned from the ground up — stronger stitching, better elastic, upgraded buckles. It works. It carries everything you need and nothing you don’t. Mags, belt-fed drums, two 2-quart canteens. Radio. Admin. General-purpose junk. It fits.</p>
+        <p>It’s meant to be worn over armor or under a pack. The straps adjust to accommodate the end user.</p>
+        <p>This is probably the last H-Harness you’ll buy — unless you lose it. Dump pouch and additional gear not included.</p>
+        <p><em>Black accents on Ranger Green are pre-production.</em></p>
       </div>
     </div>
   </section>
@@ -245,13 +233,21 @@ header nav a {
     </div>
   </section>
 
-<!-- Footer -->
-<footer>
-  <nav>
-    <a href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig">Buy Now</a> |
-    <a href="https://www.youtube.com/@AdministrativeResults">YouTube</a> |
-    <a href="service.html">Customer Service</a>
-  </nav>
-  <p>&copy; 2025 Administrative Results. All Rights Reserved.</p>
-</footer>
+  <!-- Footer -->
+  <footer>
+    <nav>
+      <a href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig">Buy Now</a> |
+      <a href="https://www.youtube.com/@AdministrativeResults">YouTube</a> |
+      <a href="service.html">Customer Service</a>
+    </nav>
+    <p>&copy; 2025 Administrative Results. All Rights Reserved.</p>
+  </footer>
 
+  <!-- Hamburger Menu Script -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
