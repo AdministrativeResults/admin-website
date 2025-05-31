@@ -13,10 +13,10 @@
       --text-light: #eee;
       --accent: #e4ac45;
       --font-sans: 'Oswald', sans-serif;
-      --header-footer-bg: #333; /* Dark grey instead of black */
+      --header-footer-bg: #111; /* Dark grey for both header and footer */
     }
 
-    /* Enable smooth scrolling for anchor links */
+    /* Enable smooth scrolling */
     html {
       scroll-behavior: smooth;
     }
@@ -52,6 +52,7 @@
       background: var(--header-footer-bg);
       z-index: 100;
     }
+    /* Logo image + text link to homepage */
     header .logo-link {
       display: flex;
       align-items: center;
@@ -89,12 +90,11 @@
     #hero {
       position: relative;
       width: 100%;
-      /* On desktop: enforce a 16∶9 aspect ratio */
+      /* Enforce a 16∶9 aspect ratio on desktop */
       aspect-ratio: 16 / 9;
-      /* Remove any fixed height—aspect-ratio handles it */
-      height: auto;
+      height: auto; /* Let aspect-ratio govern height */
       overflow: hidden;
-      margin-top: 4rem; /* account for fixed header */
+      margin-top: 4rem; /* account for fixed header height */
     }
     #hero video {
       position: absolute;
@@ -146,8 +146,7 @@
     /* Make hero shorter on mobile and shrink overlay text */
     @media (max-width: 768px) {
       #hero {
-        /* On mobile: ignore aspect-ratio, force 40vh instead */
-        aspect-ratio: none;
+        aspect-ratio: none; /* ignore aspect-ratio on mobile */
         height: 40vh;
       }
       #hero .overlay h1 {
@@ -172,16 +171,14 @@
       width: 100%;
       /* Solid white behind everything: */
       background-color: #fff;
-      /* Left‐aligned model photo that fills section proportionally: */
+      /* Left-aligned model photo that fills section proportionally: */
       background-image: url('assets/images/model-wear 1.jpg');
       background-position: left center;
       background-repeat: no-repeat;
       background-size: cover;
-      /* No forced min‐height; let content define height */
       overflow: visible; /* allow rig PNG to spill downward */
       z-index: 0;
-      /* Padding so text isn’t flush against edges */
-      padding: 4rem 1rem;
+      padding: 4rem 1rem; /* spacing so text isn’t flush against edges */
     }
     #features .features-container {
       max-width: 1200px;
@@ -214,10 +211,11 @@
     #features .features-rig img {
       position: relative; /* so bottom can push it down */
       bottom: -20%;       /* drop 20% into next section */
-      width: 120%;        /* 20% wider than its container */
+      width: 120%;        /* make it 20% wider than container */
       max-width: none;
       filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
     }
+
     /* Shrink features & center on mobile */
     @media (max-width: 768px) {
       #features {
@@ -238,19 +236,19 @@
         justify-content: center;
       }
       #features .features-rig img {
-        bottom: -40%;  /* more overlap on mobile */
-        width: 130%;   /* wider on mobile */
+        bottom: -40%; /* more overlap on mobile */
+        width: 130%;  /* wider on mobile */
       }
     }
 
     /* ===============================
-       Features List Section (full‐width white)
+       Features List Section (full-width white)
        =============================== */
     #features-list {
       width: 100vw;                 /* cover entire viewport width */
       margin-left: 50%;             /* nudge left by half its width */
       transform: translateX(-50%);  /* recenter */
-      background: #fff !important;  /* full‐width white behind everything */
+      background: #fff !important;  /* full-width white behind everything */
       padding: 3rem 2rem 1.5rem;    /* original padding */
     }
     #features-list .container {
@@ -274,7 +272,6 @@
       color: #000;
       line-height: 1.4;
     }
-    /* Stack features-list items on mobile */
     @media (max-width: 768px) {
       #features-list .container {
         flex-direction: column;
@@ -317,7 +314,6 @@
       font-size: 1rem;
       line-height: 1.6;
     }
-    /* Force rig-info to stack at mobile ≤768px */
     @media (max-width: 768px) {
       #rig-info .container {
         flex-direction: column;
@@ -373,15 +369,9 @@
       padding: 2rem;
       text-align: center;
       color: var(--text-light);
+      margin-top: 2rem;
     }
-    footer nav a {
-      margin: 0 1rem;
-      color: var(--text-light);
-    }
-    footer p {
-      margin-top: 1rem;
-    }
-    /* Footer logo button styles */
+    /* Footer logo button that scrolls to top (#hero) */
     footer .footer-logo {
       display: inline-block;
       margin-bottom: 1rem;
@@ -391,8 +381,15 @@
       height: 40px;
       width: auto;
     }
+    footer nav a {
+      margin: 0 1rem;
+      color: var(--text-light);
+    }
+    footer p {
+      margin-top: 1rem;
+    }
 
-    /* Mobile (≤768px) tweaks for header nav */
+    /* Mobile (≤768px) header/nav */
     @media (max-width: 768px) {
       .menu-toggle {
         display: block;
@@ -420,8 +417,8 @@
 <body>
   <!-- Header -->
   <header>
-    <!-- Logo image + text link back to “#hero” -->
-    <a href="#hero" class="logo-link">
+    <!-- Logo image + text link to homepage -->
+    <a href="index.html" class="logo-link">
       <img src="assets/images/logo.png" alt="Administrative Results Logo" />
       <span class="logo-text">ADMINISTRATIVE RESULTS</span>
     </a>
@@ -518,7 +515,7 @@
 
   <!-- Footer -->
   <footer>
-    <!-- Footer logo that scrolls to top (#hero) -->
+    <!-- Footer logo smoothly scrolls to top (#hero) -->
     <div class="footer-logo">
       <a href="#hero">
         <img src="assets/images/logo.png" alt="Back to top" />
@@ -565,7 +562,8 @@
     }
     else {
       console.error('HLS is not supported in this browser.');
-      // Optionally show a static poster or fallback MP4
+      // Optionally show a static fallback (MP4):
+      // videoEl.src = 'assets/videos/hero-fallback.mp4';
     }
   </script>
 </body>
