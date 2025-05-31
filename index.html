@@ -119,18 +119,23 @@
     /* ===============================
        Updated Features Section (model background + two blocks)
        =============================== */
-    #features {
-      position: relative;
-      width: 100%;
-      /* Model photo as background, center & cover */
-      background: url('assets/images/model-wear.jpg') center/cover no-repeat;
-      /* Fade it by overlaying semi-transparent white */
-      background-color: rgba(255, 255, 255, 0.5);
-      background-blend-mode: lighten;
-      /* Adjust height as needed—60vh works well on desktop */
-      min-height: 60vh;
-      overflow: visible; /* allow PNG to spill downward */
-    }
+       #features {
+  position: relative;
+  width: 100%;
+  /* Use the model photo as a left‐aligned background, and
+     force its height to be 100% of the section. */
+  background:
+    url('assets/images/model-wear.jpg')
+    left center no-repeat;
+  background-size: auto 100%;
+  /* keep the semi-transparent white overlay for the “washed-out” look */
+  background-color: rgba(255, 255, 255, 0.5);
+  background-blend-mode: lighten;
+
+  /* Keep the same overall height you had (60vh on desktop) */
+  min-height: 60vh;
+  overflow: visible; /* allow the rig PNG to “spill” down */
+}
 
     /* Container that holds text + rig side by side */
     #features .features-container {
@@ -139,7 +144,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 2rem; /* adjust side padding as needed */
+      padding: 1rem; /* adjust side padding as needed */
     }
 
     /* TEXT block (now black for readability) */
@@ -175,11 +180,14 @@
     /* ===============================
        Mobile override: stack text above rig, keep model behind
        =============================== */
-    @media (max-width: 768px) {
-      #features {
-        min-height: 50vh;            /* shorter on mobile */
-        background-position: left center; /* keep model visible on left */
-      }
+       @media (max-width: 768px) {
+  #features {
+    min-height: 50vh;
+    /* shift the model image left so its left side stays in view */
+    background-position: left center;
+    /* keep the same sizing rule so full height is visible */
+    background-size: auto 100%;
+  }
 
       #features .features-container {
         flex-direction: column;
