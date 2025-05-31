@@ -37,6 +37,21 @@
       text-decoration: none;
     }
 
+    /* ----------------------------------------------------
+       Global .btn class (now outside of any media-query)
+       ---------------------------------------------------- */
+    .btn {
+      background: var(--accent);
+      color: #000;
+      padding: 0.6rem 1.2rem;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-block;
+    }
+
     /* --------------------
        Header (logo + nav)
        -------------------- */
@@ -133,14 +148,7 @@
       max-width: 90%;
     }
     #hero .overlay .btn {
-      background: var(--accent);
-      color: #000;
-      padding: 0.6rem 1.2rem;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      text-decoration: none;
+      /* Inherited from the global .btn above */
     }
 
     /* Make hero shorter on mobile and shrink overlay text */
@@ -158,7 +166,6 @@
         margin-bottom: 0.8rem;
       }
       #hero .overlay .btn {
-        font-size: 0.9rem;
         padding: 0.5rem 1rem;
       }
     }
@@ -220,7 +227,7 @@
     @media (max-width: 768px) {
       #features {
         padding: 2rem 1rem;
-        background-position: righ center;
+        background-position: right center; /* fixed typo here */
         background-size: cover;
       }
       #features .features-container {
@@ -359,6 +366,7 @@
     #history p {
       color: #ddd;
       font-size: 1rem;
+      margin-bottom: 1rem;
     }
 
     /* ===============================
@@ -509,7 +517,18 @@
     <video src="assets/videos/history-bg.mp4" autoplay muted loop playsinline></video>
     <div class="content">
       <h2>History of the AR64A</h2>
-      <p>The AR64A Rig is based on the South African 32 Battalion H-Harness that saw wide usage in the later Cold War years between 1969-1989. The original SDF 32 Battalion H-Harness has been a staple of Administrative Results from the very beginning. It is our privilege to bring to life a completely enhanced version of this awesome piece of equipment in Ranger Green and Multicam.</p>
+      <p>
+        The AR64A Rig is based on the South African 32 Battalion H-Harness that saw wide usage in the later Cold War years between 1969-1989. The original SDF 32 Battalion H-Harness has been a staple of Administrative Results from the very beginning. It is our privilege to bring to life a completely enhanced version of this awesome piece of equipment in Ranger Green and Multicam.
+      </p>
+
+      <!-- New “Get Yours Now” button -->
+      <a
+        href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig"
+        class="btn"
+        style="margin-top: 1rem;"
+      >
+        Get Yours Now
+      </a>
     </div>
   </section>
 
