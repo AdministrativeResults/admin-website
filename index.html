@@ -149,17 +149,20 @@
     #features {
       position: relative;
       width: 100%;
+
       /* Solid white behind everything: */
       background-color: #fff;
-      /* Left-aligned model photo that fills section height: */
+      /* Left-aligned model photo that fills section proportionally: */
       background-image: url('assets/images/model-wear 1.jpg');
       background-position: left center;
       background-repeat: no-repeat;
-      background-size: auto 100%;
-      /* Reduced section height on desktop: */
-      min-height: 50vh;
+      background-size: cover;   /* changed from auto 100% ➞ cover */
+
+      /* No more forced min-height; height driven by content */
       overflow: visible; /* allow rig PNG to spill downward */
       z-index: 0;
+      /* Optional padding top/bottom so text isn’t flush against edges */
+      padding: 4rem 1rem;
     }
     #features .features-container {
       max-width: 1200px;
@@ -167,12 +170,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1rem; /* adjust side padding as needed */
+      gap: 2rem;
     }
 
     /* TEXT block */
     #features .features-text {
-      width: 45%;
+      flex: 1 1 45%;
       color: #000; /* black text for readability */
     }
     #features .features-text h2 {
@@ -186,14 +189,14 @@
 
     /* RIG block */
     #features .features-rig {
-      width: 50%;
+      flex: 1 1 45%;
       display: flex;
       justify-content: flex-end;
       position: relative;
     }
     #features .features-rig img {
       position: relative;    /* so bottom can push it down */
-      bottom: -30%;          /* drop 30% of its own height into the next section */
+      bottom: -20%;          /* drop 20% of its own height into the next section */
       width: 120%;           /* make it 20% wider than its container */
       max-width: none;
       filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
@@ -202,13 +205,13 @@
     /* Shrink features & center on mobile */
     @media (max-width: 768px) {
       #features {
-        min-height: 50vh;
-        background-position: left center;
-        background-size: auto 100%;
+        /* Slightly less padding on mobile */
+        padding: 2rem 1rem;
+        background-position: center center;
+        background-size: cover;
       }
       #features .features-container {
         flex-direction: column;
-        padding: 1.5rem;
       }
       #features .features-text {
         width: 100%;
@@ -220,9 +223,8 @@
         justify-content: center;
       }
       #features .features-rig img {
-        bottom: -40%;   /* slightly less drop on mobile */
+        bottom: -40%;   /* more overlap on mobile */
         width: 130%;    /* wider on mobile for bigger overlap */
-        max-width: none;
       }
     }
 
@@ -234,7 +236,7 @@
       margin-left: 50%;             /* nudge left by half its width */
       transform: translateX(-50%);  /* recenter */
       background: #fff !important;  /* full‐width white behind everything */
-      padding: 3rem 2rem 1.5rem;    /* keep original padding */
+      padding: 3rem 2rem 1.5rem;    /* original padding */
     }
     #features-list .container {
       max-width: 1200px;
@@ -388,7 +390,7 @@
   </style>
 </head>
 <body>
-  <!-- Header (unchanged) -->
+  <!-- Header -->
   <header>
     <div class="logo">ADMINISTRATIVE RESULTS</div>
     <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
@@ -401,10 +403,6 @@
 
   <!-- Hero Section -->
   <section id="hero">
-    <!--
-      We give this <video> an ID so we can attach the Mux HLS stream via JS.
-      The `poster` attribute is optional but recommended—here we use a Mux thumbnail as fallback.
-    -->
     <video
       id="heroVideo"
       autoplay
@@ -505,11 +503,9 @@
   <!-- Hls.js (for browsers that don’t support HLS natively) -->
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
-    // 1) Replace with your actual Mux Playback ID:
+    // Replace with your actual Mux Playback ID:
     const playbackId = '02Gv3F8dzAXxjgGWDy1qBn00mjAeBreWI00KSUhMt6HxA00';
-    // 2) Build the full HLS URL:
     const hlsUrl = `https://stream.mux.com/${playbackId}.m3u8`;
-
     const videoEl = document.getElementById('heroVideo');
 
     // If the browser can play .m3u8 natively (Safari, iOS), set src directly
