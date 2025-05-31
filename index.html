@@ -63,21 +63,29 @@
       color: var(--text-light);
     }
 
-    /* Hero Section */
+    /* =============================== 
+       Hero Section (Mux HLS background)
+       =============================== */
     #hero {
       position: relative;
       width: 100%;
-      aspect-ratio: 16/9;
+      /* Desktop height ~60vh; on mobile shrinks to 40vh via media query */
+      height: 60vh;
       overflow: hidden;
-      margin-top: 4rem;
+      margin-top: 4rem; /* account for fixed header */
     }
+    /* We will load the Mux HLS into this <video> via JavaScript */
     #hero video {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 50%;
+      left: 50%;
+      width: 100vw;       /* always span viewport width */
+      height: auto;       /* auto height, so min-height: 100vh can apply */
+      min-height: 100vh;  /* guarantee vertical coverage */
+      transform: translate(-50%, -50%);
       object-fit: cover;
+      object-position: center center;
+      z-index: 0;
     }
     #hero .overlay {
       position: absolute;
@@ -116,7 +124,26 @@
       text-decoration: none;
     }
 
-    /* ===============================
+    /* Make hero shorter on mobile and shrink overlay text */
+    @media (max-width: 768px) {
+      #hero {
+        height: 40vh;
+      }
+      #hero .overlay h1 {
+        font-size: 1.5rem;
+      }
+      #hero .overlay p {
+        font-size: 0.9rem;
+        line-height: 1.2;
+        margin-bottom: 0.8rem;
+      }
+      #hero .overlay .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+
+    /* =============================== 
        Features Section (model background + two blocks)
        =============================== */
     #features {
@@ -129,10 +156,10 @@
       background-position: left center;
       background-repeat: no-repeat;
       background-size: auto 100%;
-
       /* Keep section tall enough on desktop: */
       min-height: 60vh;
       overflow: visible; /* allow rig PNG to spill downward */
+      z-index: 0;
     }
     #features .features-container {
       max-width: 1200px;
@@ -165,22 +192,49 @@
       position: relative;
     }
     #features .features-rig img {
-      position: relative;    /* relative so bottom can push it down */
+      position: relative;    /* so bottom can push it down */
       bottom: -50%;          /* drop 50% of its own height into the next section */
       width: 120%;           /* make it 20% wider than its container */
       max-width: none;
       filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
     }
 
-    /* ===============================
+    /* Shrink features & center on mobile */
+    @media (max-width: 768px) {
+      #features {
+        min-height: 50vh;
+        background-position: left center;
+        background-size: auto 100%;
+      }
+      #features .features-container {
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+      #features .features-text {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      #features .features-rig {
+        width: 100%;
+        justify-content: center;
+      }
+      #features .features-rig img {
+        bottom: -40%;   /* slightly less drop on mobile */
+        width: 130%;    /* wider on mobile for bigger overlap */
+        max-width: none;
+      }
+    }
+
+    /* =============================== 
        Features List Section (full‐width white)
        =============================== */
     #features-list {
-      width: 100vw;                /* cover entire viewport width */
-      margin-left: 50%;            /* nudge left by half its width */
-      transform: translateX(-50%); /* recenter */
-      background: #fff !important; /* full‐width white behind everything */
-      padding: 3rem 2rem 1.5rem;   /* keep original padding */
+      width: 100vw;                 /* cover entire viewport width */
+      margin-left: 50%;             /* nudge left by half its width */
+      transform: translateX(-50%);  /* recenter */
+      background: #fff !important;  /* full‐width white behind everything */
+      padding: 3rem 2rem 1.5rem;    /* keep original padding */
     }
     #features-list .container {
       max-width: 1200px;
@@ -204,7 +258,21 @@
       line-height: 1.4;
     }
 
-    /* Rig Description Section */
+    /* Stack features-list items on mobile */
+    @media (max-width: 768px) {
+      #features-list .container {
+        flex-direction: column;
+        align-items: center;
+      }
+      #features-list .feature {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    /* =============================== 
+       Rig Description Section 
+       =============================== */
     #rig-info {
       background: #fff;
       padding: 2rem 2rem 4rem;
@@ -234,9 +302,7 @@
       line-height: 1.6;
     }
 
-    /* -------------------------------
-       NEW: Force stack at ≤768px (instead of side-by-side)
-       ------------------------------- */
+    /* Force rig-info to stack at mobile ≤768px */
     @media (max-width: 768px) {
       #rig-info .container {
         flex-direction: column;
@@ -296,7 +362,7 @@
       margin-top: 1rem;
     }
 
-    /* Mobile (≤768px) tweaks */
+    /* Mobile (≤768px) tweaks for header nav */
     @media (max-width: 768px) {
       .menu-toggle {
         display: block;
@@ -318,71 +384,11 @@
       header nav.active {
         display: flex;
       }
-
-      /* Shrink hero overlay text a bit */
-      #hero .overlay h1 {
-        font-size: 1.5rem;
-      }
-      #hero .overlay p {
-        font-size: 0.9rem;
-        line-height: 1.2;
-        margin-bottom: 0.8rem;
-      }
-      #hero .overlay .btn {
-        font-size: 0.9rem;
-        padding: 0.5rem 1rem;
-      }
-
-      /* Make hero shorter on mobile (40vh) */
-      #hero {
-        aspect-ratio: unset;
-        height: 40vh;
-      }
-      #hero video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      /* Features Section: smaller height, center text, center PNG */
-      #features {
-        min-height: 50vh;
-        background-position: left center;
-        background-size: auto 100%;
-      }
-      #features .features-container {
-        flex-direction: column;
-        padding: 1.5rem;
-      }
-      #features .features-text {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 1.5rem;
-      }
-      #features .features-rig {
-        width: 100%;
-        justify-content: center;
-      }
-      #features .features-rig img {
-        position: relative;
-        bottom: -40%;   /* slightly less drop on mobile */
-        width: 130%;    /* wider on mobile for bigger overlap */
-        max-width: none;
-      }
-
-      /* Stack features-list items */
-      #features-list .container {
-        flex-direction: column;
-        align-items: center;
-      }
-      #features-list .feature {
-        width: 100%;
-        text-align: center;
-      }
     }
   </style>
 </head>
 <body>
+  <!-- Header (unchanged) -->
   <header>
     <div class="logo">ADMINISTRATIVE RESULTS</div>
     <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
@@ -393,9 +399,21 @@
     </nav>
   </header>
 
-  <!-- Hero -->
+  <!-- Hero Section -->
   <section id="hero">
-    <video src="assets/videos/hero-bg.mp4" autoplay muted loop playsinline></video>
+    <!--
+      We give this <video> an ID so we can attach the Mux HLS stream via JS.
+      The `poster` attribute is optional but recommended—here we use Mux thumbnail as fallback.
+    -->
+    <video
+      id="heroVideo"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="https://image.mux.com/54L019uETABRSyI016H3IjXsDjJQYpuSRmcH00b61HV46A/thumbnail.jpg"
+    ></video>
     <div class="overlay">
       <h1>AR64A H-Harness Patrol Rig</h1>
       <p>The ultimate patrol rig engineered for elite mercenary operations. Lightweight, modular, and built to perform under the harshest conditions.</p>
@@ -481,6 +499,37 @@
   <script>
     function toggleMenu() {
       document.getElementById('mobileMenu').classList.toggle('active');
+    }
+  </script>
+
+  <!-- Hls.js (for browsers that don’t support HLS natively) -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    // 1) Replace with your actual Mux Playback ID:
+    const playbackId = '54L019uETABRSyI016H3IjXsDjJQYpuSRmcH00b61HV46A';
+    // 2) Build the full HLS URL:
+    const hlsUrl = `https://stream.mux.com/${playbackId}.m3u8`;
+
+    const videoEl = document.getElementById('heroVideo');
+
+    // If the browser can play .m3u8 natively (Safari, iOS), set src directly
+    if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
+      videoEl.src = hlsUrl;
+    }
+    else if (Hls.isSupported()) {
+      // Otherwise use hls.js to load HLS
+      const hls = new Hls();
+      hls.loadSource(hlsUrl);
+      hls.attachMedia(videoEl);
+      hls.on(Hls.Events.MANIFEST_PARSED, function () {
+        videoEl.play().catch(err => {
+          console.warn('Autoplay prevented:', err);
+        });
+      });
+    }
+    else {
+      console.error('HLS is not supported in this browser.');
+      // Optionally show a static poster or fallback MP4
     }
   </script>
 </body>
