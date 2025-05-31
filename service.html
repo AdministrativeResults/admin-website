@@ -6,13 +6,27 @@
   <title>Customer Service | ADMINISTRATIVE RESULTS</title>
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6.x Free CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-pTg6vAPDFCA+WB9Sgy0/sGxEk/ckG6VXihYE+LfR6N6+qSShiBTikpLgEFH3ylLAOIQ+9oNkP+Unx5p+X0COlw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
   <style>
     :root {
       --bg-dark: #111;
       --text-light: #eee;
       --accent: #e4ac45;
       --font-sans: 'Oswald', sans-serif;
+      --card-bg: #fff;
+      --card-border-radius: 0.5rem;
+      --card-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -22,17 +36,17 @@
       background: var(--bg-dark);
       color: var(--text-light);
       font-family: var(--font-sans);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
       overflow-x: hidden;
+      line-height: 1.5;
     }
     a {
       color: var(--accent);
       text-decoration: none;
     }
 
-    /* Header */
+    /* --------------------
+       Header (logo + nav)
+       -------------------- */
     header {
       position: fixed;
       top: 0;
@@ -45,10 +59,21 @@
       background: #000;
       z-index: 100;
     }
-    header .logo {
+    header .logo-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    header .logo-link img {
+      height: 40px; /* adjust as needed */
+      width: auto;
+      margin-right: 0.5rem;
+    }
+    header .logo-text {
       font-size: 1.25rem;
       font-weight: bold;
       color: var(--text-light);
+      line-height: 1;
     }
     .menu-toggle {
       display: none;
@@ -65,50 +90,140 @@
       color: var(--text-light);
     }
 
-    /* Main Content */
-    main {
-      flex: 1;
-      padding: 8rem 2rem 2rem; /* account for fixed header + some breathing room */
+    /* ===============================
+       Hero Section (forced 16∶9 on desktop)
+       =============================== */
+    #hero {
+      position: relative;
+      width: 100%;
+      /* Force a 16∶9 aspect ratio on desktop: */
+      aspect-ratio: 16 / 9;
+      height: auto;         /* let aspect-ratio govern height */
+      overflow: hidden;
+      margin-top: 4rem;     /* account for fixed header height */
+      background: #000;     /* fallback in case video doesn’t load */
+    }
+    #hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      z-index: 0;
+    }
+    #hero .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.5);
       text-align: center;
-      background: #222;
+      padding: 0 1rem;
     }
-    main h1 {
+    #hero .overlay h2 {
+      color: #fff;
       font-size: 2rem;
-      margin-bottom: 1.5rem;
-      color: var(--accent);
+      margin-bottom: 1rem;
+      max-width: 90%;
     }
-    main p {
-      font-size: 1.25rem;
+    #hero .overlay p {
       color: #ddd;
-      line-height: 1.6;
-    }
-    main a.email-link {
-      display: inline-block;
-      margin-top: 1rem;
       font-size: 1.25rem;
-      color: var(--accent);
-      text-decoration: underline;
+      max-width: 600px;
+      line-height: 1.4;
     }
 
-    /* Footer */
+    /* On mobile, drop the aspect-ratio and force 40vh */
+    @media (max-width: 768px) {
+      #hero {
+        aspect-ratio: auto;
+        height: 40vh;
+      }
+      #hero .overlay h2 {
+        font-size: 1.5rem;
+      }
+      #hero .overlay p {
+        font-size: 1rem;
+        line-height: 1.3;
+      }
+    }
+
+    /* ===============================
+       Shipping & Returns Section
+       =============================== */
+    #policies {
+      background: #fff;
+      color: #000;
+      padding: 4rem 1rem;
+    }
+    #policies .policies-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+    .policy-card {
+      flex: 1 1 45%;
+      background: var(--card-bg);
+      border-radius: var(--card-border-radius);
+      box-shadow: var(--card-shadow);
+      padding: 2rem;
+    }
+    .policy-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .policy-card p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #333;
+    }
+    @media (max-width: 768px) {
+      #policies .policies-container {
+        flex-direction: column;
+      }
+      .policy-card {
+        width: 100%;
+        margin-bottom: 2rem;
+      }
+    }
+
+    /* ===============================
+       Footer
+       =============================== */
     footer {
       background: #000;
       padding: 2rem;
       text-align: center;
       color: var(--text-light);
-      margin-top: auto;
+      margin-top: 2rem;
     }
     footer nav a {
       margin: 0 1rem;
-      font-size: 0.9rem;
       color: var(--text-light);
+      font-weight: 500;
     }
     footer p {
       margin-top: 1rem;
       font-size: 0.9rem;
     }
 
-    /* Mobile-specific adjustments */
+    /* --------------------
+       Mobile (≤768px) Header Nav
+       -------------------- */
     @media (max-width: 768px) {
       .menu-toggle {
         display: block;
@@ -130,47 +245,91 @@
       header nav.active {
         display: flex;
       }
-      main {
-        padding: 6rem 1rem 1rem;
-      }
-      main h1 {
-        font-size: 1.75rem;
-      }
-      main p, main a.email-link {
-        font-size: 1.1rem;
-      }
     }
   </style>
 </head>
 <body>
   <!-- Header -->
   <header>
-    <div class="logo">ADMINISTRATIVE RESULTS</div>
+    <a href="index.html" class="logo-link">
+      <!-- Replace with your actual logo file path: -->
+      <img src="assets/images/logo.png" alt="Administrative Results Logo" />
+      <span class="logo-text">ADMINISTRATIVE RESULTS</span>
+    </a>
     <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
     <nav id="mobileMenu">
-      <a href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig">Buy</a>
+      <a href="index.html">Home</a>
       <a href="videos.html">Videos</a>
       <a href="service.html">Customer Service</a>
     </nav>
   </header>
 
-  <!-- Main Content -->
-  <main>
-    <h1>Customer Service</h1>
-    <p>
-      For any questions or issues regarding the AR64A H-Harness Patrol Rig, please reach out to our support team. 
-      We’re here to help you with sizing, returns, warranties, or any other inquiries.
-    </p>
-    <a class="email-link" href="mailto:support@3fsupply.com">
-      PLEASE EMAIL support@3fsupply.com for customer support regarding the rigs.
-    </a>
-  </main>
+  <!-- Hero Section (forced 16∶9) -->
+  <section id="hero">
+    <video
+      id="heroVideo"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="assets/images/hero-placeholder.jpg"
+    ></video>
+    <div class="overlay">
+      <h2>
+        PLEASE EMAIL<br />
+        <a href="mailto:support@3fsupply.com" style="color: #fff; text-decoration: underline;">
+          support@3fsupply.com
+        </a><br />
+        for customer support regarding the rigs.
+      </h2>
+      <p style="opacity: 0.8; font-size: 0.95rem;">
+        Our team will reply as soon as possible.
+      </p>
+    </div>
+  </section>
+
+  <!-- Shipping & Returns Section -->
+  <section id="policies">
+    <div class="policies-container">
+      <!-- Shipping Policy Card -->
+      <div class="policy-card">
+        <h3><i class="fa-solid fa-shipping-fast"></i> Shipping Policy</h3>
+        <p>
+          All orders are processed within 1–2 business days. We offer free ground
+          shipping on all orders over $150 within the continental U.S. Expedited options
+          (2-day or overnight) are available at checkout for an additional fee.
+        </p>
+        <p>
+          You will receive a shipping confirmation email with tracking information as soon
+          as your order leaves our warehouse. If you have any questions about your shipment,
+          please email <a href="mailto:shipping@3fsupply.com">shipping@3fsupply.com</a>.
+        </p>
+      </div>
+
+      <!-- Returns Policy Card -->
+      <div class="policy-card">
+        <h3><i class="fa-solid fa-rotate-left"></i> Return Policy</h3>
+        <p>
+          We want you to be completely satisfied with your purchase. If for any reason you
+          need to return, you may do so within 30 days of delivery. Returned items must be
+          in new, unused condition with all original tags attached.
+        </p>
+        <p>
+          To start a return, please email <a href="mailto:returns@3fsupply.com">returns@3fsupply.com</a>
+          with your order number and reason for return. Once approved, we will provide a
+          prepaid shipping label. Refunds will be processed within 5–7 business days of receiving
+          the return.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer>
     <nav>
-      <a href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig">Buy Now</a> |
-      <a href="https://www.youtube.com/@AdministrativeResults">YouTube</a> |
+      <a href="index.html">Home</a> |
+      <a href="videos.html">Videos</a> |
       <a href="service.html">Customer Service</a>
     </nav>
     <p>&copy; 2025 Administrative Results. All Rights Reserved.</p>
@@ -180,6 +339,36 @@
   <script>
     function toggleMenu() {
       document.getElementById('mobileMenu').classList.toggle('active');
+    }
+  </script>
+
+  <!-- Hls.js (for browsers that don’t support HLS natively) -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    // Replace with your actual Mux Playback ID (or remove this block if not using Mux HLS):
+    const playbackId = '02Gv3F8dzAXxjgGWDy1qBn00mjAeBreWI00KSUhMt6HxA00';
+    const hlsUrl = `https://stream.mux.com/${playbackId}.m3u8`;
+    const videoEl = document.getElementById('heroVideo');
+
+    if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
+      // Native HLS support (Safari, iOS)
+      videoEl.src = hlsUrl;
+    }
+    else if (Hls.isSupported()) {
+      // hls.js fallback for other browsers
+      const hls = new Hls();
+      hls.loadSource(hlsUrl);
+      hls.attachMedia(videoEl);
+      hls.on(Hls.Events.MANIFEST_PARSED, function () {
+        videoEl.play().catch(err => {
+          console.warn('Autoplay prevented:', err);
+        });
+      });
+    }
+    else {
+      console.error('HLS is not supported in this browser.');
+      // Optional fallback: if you have a static MP4, do e.g.:
+      // videoEl.src = 'assets/videos/hero-fallback.mp4';
     }
   </script>
 </body>
