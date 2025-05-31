@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AR64A H-Harness Patrol Rig | ADMINISTRATIVE RESULTS</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg-dark: #111; --text-light: #eee; --accent: #b66e2e; --font-sans: 'Oswald', sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg-dark); color: var(--text-light); font-family: var(--font-sans); overflow-x: hidden; }
+    a { color: var(--accent); text-decoration: none; }
+
+    /* Header */
+    header { position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: rgba(0,0,0,0.5); z-index: 10; }
+    header .logo { font-size: 1.25rem; font-weight: bold; color: var(--text-light); }
+    header nav a { margin-left: 1.5rem; font-weight: 500; color: var(--text-light); }
+
+    /* Hero */
+    #hero { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; margin-top: 4rem; }
+    #hero video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+    #hero .overlay { position: absolute; top: 0; left: 0; width:100%; height:100%; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; background: rgba(0,0,0,0.3); text-align:center; padding:0 1rem; }
+    #hero .overlay h1 { color:#fff; font-size:3rem; margin-bottom:.5rem; }
+    #hero .overlay p { color:#ddd; font-size:1.25rem; margin-bottom:1.5rem; max-width:600px; }
+    #hero .overlay .btn { background: var(--accent); color:#000; padding:.75rem 1.5rem; font-weight:bold; border:none; cursor:pointer; }
+
+    /* Simplified Features Section */
+    #features { position: relative; width: 100%; overflow: hidden; background: #fff; margin-top: 0; }
+    #features img.model { width: 100%; height: auto; object-fit: cover; opacity: 0.3; display: block; }
+    #features img.rig { position: absolute; top: 50%; right: 5%; transform: translateY(-50%); width: 45%; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3)); z-index:2; }
+
+    /* Feature list below */
+    #features-list {
+      background: #fff;
+      /* top 3rem, sides 2rem, bottom halved to 1.5rem */
+      padding: 3rem 2rem 1.5rem;
+    }
+    #features-list .container { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; }
+    #features-list .feature { width: 30%; margin-bottom: 2rem; }
+    #features-list .feature h3 { font-size: 1.5rem; color: var(--accent); margin-bottom: 0.5rem; }
+    #features-list .feature p { font-size: 1rem; color: #000; line-height: 1.4; }
+
+    /* Rig Description Section */
+    #rig-info {
+      background: #fff;
+      /* top halved to 2rem, sides 2rem, bottom stays 4rem */
+      padding: 2rem 2rem 4rem;
+    }
+    #rig-info .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+    /* Updated "placeholder" rules to display the actual image */
+    #rig-info .placeholder {
+  width: 45%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+    #rig-info .description { width: 50%; color: #000; padding-left: 2rem; }
+    #rig-info .description p { font-size: 1rem; line-height: 1.6; }
+
+    /* History Section */
+    #history { position: relative; padding: 6rem 2rem; }
+    #history video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
+    #history .content { position: relative; max-width: 800px; margin: 0 auto; text-align: center; z-index: 1; }
+    #history h2 { color: #fff; font-size: 2rem; margin-bottom: 1rem; }
+    #history p { color: #ddd; font-size: 1rem; }
+
+    /* Footer */
+    footer { background: #000; padding: 2rem; text-align: center; color: var(--text-light); }
+    footer nav a { margin: 0 1rem; }
+    footer p { margin-top: 1rem; }
+
+    @media(max-width: 768px) {
+      #features img.rig { width: 50%; right: 50%; transform: translate(50%, -50%); }
+      #rig-info .container { flex-direction: column; }
+      #rig-info .placeholder, #rig-info .description { width: 100%; padding: 0; }
+      #rig-info .placeholder { margin-bottom: 2rem; }
+      #features-list .container { flex-direction: column; align-items: center; }
+      #features-list .feature { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">ADMINISTRATIVE RESULTS</div>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="buy.html">Buy</a>
+      <a href="videos.html">Videos</a>
+      <a href="service.html">Customer Service</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero">
+    <video src="assets/videos/hero-bg.mp4" autoplay muted loop playsinline></video>
+    <div class="overlay">
+      <h1>AR64A H-Harness Patrol Rig</h1>
+      <p>The ultimate patrol rig engineered for elite mercenary operations. Lightweight, modular, and built to perform under the harshest conditions.</p>
+      <button class="btn" onclick="location.href='buy.html'">Get Yours Now</button>
+    </div>
+  </section>
+
+  <!-- Simplified Features -->
+  <section id="features">
+    <img src="assets/images/model-wear.jpg" alt="Operator wearing Rig" class="model">
+    <img src="assets/images/rig-front.png" alt="AR64A Rig" class="rig">
+  </section>
+
+  <!-- Feature Details -->
+  <section id="features-list">
+    <div class="container">
+      <div class="feature">
+        <h3>Magazine Fit</h3>
+        <p>The AR64A can hold any type of magazine, including belt-fed machine gun drums.</p>
+      </div>
+      <div class="feature">
+        <h3>Designed for Work</h3>
+        <p>Redesigned with improved stitching, modern elastic, upgraded buckles, and more for ultimate patrol.</p>
+      </div>
+      <div class="feature">
+        <h3>Fit</h3>
+        <p>Designed to wear with a pack or over body armor. Fully adjustable straps accommodate any user.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rig Description (with the new back-side image) -->
+  <section id="rig-info">
+    <div class="container">
+      <img src="assets/images/rig-back-description.jpg" alt="Rig Back Description" class="placeholder">
+      <div class="description">
+        <p>The AR64A has been re-designed and overhauled with improved stitching, modern elastic, upgraded buckles, and more. The AR64A H-Harness is the ultimate patrolling harness. The AR64A can hold any type of magazine to include belt-fed machine gun drum magazines. In addition, it has two side saddlebags that can carry 2 x two quartz water canteens while out on patrol with additional administrative, radio, and general-purpose pouches.</p>
+        <p>The AR64A H-Harness was designed to be worn with a pack or over slick body armor. The straps are fully adjustable to accommodate the end user.</p>
+        <p>This is the last H-Harness you may ever buy. Dump Pouch and additional gear not included.</p>
+        <p>The Black accents on the Ranger Green is not the final product*</p>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- History -->
+  <section id="history">
+    <video src="assets/videos/history-bg.mp4" autoplay muted loop playsinline></video>
+    <div class="content">
+      <h2>History of the AR64A</h2>
+      <p>The AR64A Rig is based on the South African 32 Battalion H-Harness that saw wide usage in the later Cold War years between 1969-1989. The original SDF 32 Battalion H-Harness has been a staple of Administrative Results from the very beginning. It is our privilege to bring to life a completely enhanced version of this awesome piece of equipment in Ranger Green and Multicam.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <nav>
+      <a href="buy.html">Buy Now</a> |
+      <a href="videos.html">YouTube</a> |
+      <a href="service.html">Customer Service</a>
+    </nav>
+    <p>&copy; 2025 Administrative Results. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
