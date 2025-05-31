@@ -234,8 +234,10 @@
       line-height: 1.6;
     }
 
-    /* Stack rig-info content at very small widths */
-    @media (max-width: 480px) {
+    /* -------------------------------
+       NEW: Force stack at ≤768px (instead of side-by-side)
+       ------------------------------- */
+    @media (max-width: 768px) {
       #rig-info .container {
         flex-direction: column;
       }
@@ -243,6 +245,9 @@
       #rig-info .description {
         width: 100%;
         padding: 0;
+      }
+      #rig-info .description {
+        margin-top: 1rem;
       }
     }
 
