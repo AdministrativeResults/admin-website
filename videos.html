@@ -51,9 +51,9 @@
       font-family: var(--font-sans);
       line-height: 1.5;
 
-      /* ↑↑↑ Increase bottom padding so pagination never hides behind the footer ↑↑↑ */
-      padding-top: 4.5rem;   /* offset for fixed header */
-      padding-bottom: 8rem; /* <- bumped up from 4.5rem to 8rem */
+      /* Only top padding remains for the fixed header */
+      padding-top: 4.5rem;
+      padding-bottom: 0; /* Removed bottom padding */
     }
     a {
       color: var(--accent-color);
@@ -93,12 +93,11 @@
       color: var(--header-footer-text);
       line-height: 1;
     }
-
     header .logo-link,
-  header .logo-link:hover,
-  header .logo-link:focus {
-    text-decoration: none;
-  }
+    header .logo-link:hover,
+    header .logo-link:focus {
+      text-decoration: none;
+    }
     .menu-toggle {
       display: none; /* can be enabled if you add a mobile menu later */
     }
@@ -206,7 +205,7 @@
     #pagination {
       margin: 2rem auto;
 
-      /* ↑↑↑ Add bottom margin so these buttons never butt right up against the footer ↑↑↑ */
+      /* Add bottom margin so these buttons never butt right up against content */
       margin-bottom: 4rem;
 
       text-align: center;
@@ -238,17 +237,14 @@
     }
 
     /* ==================================================
-       Footer
+       Footer (now static)
        ================================================== */
     footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
       background: var(--header-footer-bg);
       color: var(--header-footer-text);
       padding: 1.5rem 2rem;
       text-align: center;
+      /* removed position:fixed so it only appears at the bottom of the content */
     }
     footer .footer-logo {
       display: inline-block;
@@ -325,7 +321,7 @@
   </div>
 
   <!-- ===============================
-       Footer (same as other pages, logo scrolls to top)
+       Footer (static, appears only at page bottom)
        =============================== -->
   <footer>
     <div class="footer-logo">
