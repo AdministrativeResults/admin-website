@@ -117,18 +117,20 @@
     }
 
     /* ===============================
-       Features Section (model background + text + rig)
+       Features Section (model background + two blocks)
        =============================== */
     #features {
       position: relative;
       width: 100%;
-      /* Left-aligned model background, full height */
-      background: url('assets/images/model-wear.jpg') left center no-repeat;
+      /* Solid white behind everything: */
+      background-color: #fff;
+      /* Left-aligned model photo that fills section height: */
+      background-image: url('assets/images/model-wear.jpg');
+      background-position: left center;
+      background-repeat: no-repeat;
       background-size: auto 100%;
-      /* Semi-white overlay to “wash out” the photo */
-      background-color: rgba(255, 255, 255, 0.5);
-      background-blend-mode: lighten;
 
+      /* Keep section tall enough on desktop: */
       min-height: 60vh;
       overflow: visible; /* allow rig PNG to spill downward */
     }
@@ -140,10 +142,11 @@
       justify-content: space-between;
       padding: 1rem; /* adjust side padding as needed */
     }
-    /* Text block */
+
+    /* TEXT block */
     #features .features-text {
       width: 45%;
-      color: #000;
+      color: #000; /* black text for readability */
     }
     #features .features-text h2 {
       font-size: 2rem;
@@ -153,7 +156,8 @@
       font-size: 1rem;
       line-height: 1.6;
     }
-    /* Rig block */
+
+    /* RIG block */
     #features .features-rig {
       width: 50%;
       display: flex;
@@ -161,22 +165,22 @@
       position: relative;
     }
     #features .features-rig img {
-      position: relative;    /* relative so bottom: -50% pushes it down */
-      bottom: -50%;          /* drop 50% of its own height */
-      width: 120%;           /* 20% wider than container */
+      position: relative;    /* relative so bottom can push it down */
+      bottom: -50%;          /* drop 50% of its own height into the next section */
+      width: 120%;           /* make it 20% wider than its container */
       max-width: none;
       filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
     }
 
     /* ===============================
-       Full-width white bar for Features List
+       Features List Section (full‐width white)
        =============================== */
     #features-list {
-      width: 100vw;                 /* force full viewport width */
-      margin-left: 50%;             /* shift left by half its own width */
-      transform: translateX(-50%);  /* recenter it */
-      background: #fff !important;  /* full-width white background */
-      padding: 3rem 2rem 1.5rem;    /* existing padding */
+      width: 100vw;                /* cover entire viewport width */
+      margin-left: 50%;            /* nudge left by half its width */
+      transform: translateX(-50%); /* recenter */
+      background: #fff !important; /* full‐width white behind everything */
+      padding: 3rem 2rem 1.5rem;   /* keep original padding */
     }
     #features-list .container {
       max-width: 1200px;
@@ -230,7 +234,7 @@
       line-height: 1.6;
     }
 
-    /* Remove or override any column-stacking at 480px */
+    /* Stack rig-info content at very small widths */
     @media (max-width: 480px) {
       #rig-info .container {
         flex-direction: column;
@@ -287,7 +291,7 @@
       margin-top: 1rem;
     }
 
-    /* Mobile-specific adjustments */
+    /* Mobile (≤768px) tweaks */
     @media (max-width: 768px) {
       .menu-toggle {
         display: block;
@@ -310,6 +314,7 @@
         display: flex;
       }
 
+      /* Shrink hero overlay text a bit */
       #hero .overlay h1 {
         font-size: 1.5rem;
       }
@@ -323,7 +328,18 @@
         padding: 0.5rem 1rem;
       }
 
-      /* Simplify Features on mobile—stack text, center PNG */
+      /* Make hero shorter on mobile (40vh) */
+      #hero {
+        aspect-ratio: unset;
+        height: 40vh;
+      }
+      #hero video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Features Section: smaller height, center text, center PNG */
       #features {
         min-height: 50vh;
         background-position: left center;
@@ -344,23 +360,12 @@
       }
       #features .features-rig img {
         position: relative;
-        bottom: -40%;
-        width: 130%;
+        bottom: -40%;   /* slightly less drop on mobile */
+        width: 130%;    /* wider on mobile for bigger overlap */
         max-width: none;
       }
 
-      /* Make hero taller on mobile */
-      #hero {
-        aspect-ratio: unset;
-        height: 40vh;
-      }
-      #hero video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      /* Stack feature-list items on mobile */
+      /* Stack features-list items */
       #features-list .container {
         flex-direction: column;
         align-items: center;
@@ -368,19 +373,6 @@
       #features-list .feature {
         width: 100%;
         text-align: center;
-      }
-
-      /* Stack rig-info on mobile */
-      #rig-info .container {
-        flex-direction: column;
-      }
-      #rig-info .placeholder,
-      #rig-info .description {
-        width: 100%;
-        padding: 0;
-      }
-      #rig-info .placeholder {
-        margin-bottom: 2rem;
       }
     }
   </style>
