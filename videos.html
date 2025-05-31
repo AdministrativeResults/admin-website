@@ -2,17 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YouTube Channel Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YouTube Portfolio & Metrics | ADMINISTRATIVE RESULTS</title>
+
   <!-- Google Font (Oswald) -->
   <link
     href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap"
     rel="stylesheet"
   />
+
+  <!-- Font Awesome for potential future icons (optional) -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-pTg6vAPDFCA+WB9Sgy0/sGxEk/ckG6VXihYE+LfR6N6+qSShiBTikpLgEFH3ylLAOIQ+9oNkP+Unx5p+X0COlw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
   <style>
-    /* -----------------------------------------------
-       Basic Reset & Root Variables
-       ----------------------------------------------- */
+    /* ==================================================
+       Reset & Root Variables
+       ================================================== */
     :root {
       --font-sans: 'Oswald', sans-serif;
       --accent-color: #e4ac45;
@@ -21,8 +32,12 @@
       --card-border-radius: 0.5rem;
       --text-dark: #333333;
       --text-light: #666666;
+
+      /* Header/Footer background (dark grey) */
+      --header-footer-bg: #333333;
+      --header-footer-text: #eeeeee;
     }
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -32,46 +47,92 @@
     }
     body {
       background: var(--bg-page);
-      font-family: var(--font-sans);
       color: var(--text-dark);
+      font-family: var(--font-sans);
       line-height: 1.5;
-      padding: 2rem;
+      padding-top: 4.5rem; /* offset for fixed header */
+      padding-bottom: 4.5rem; /* offset for footer */
     }
     a {
       color: var(--accent-color);
       text-decoration: none;
     }
+    a:hover {
+      text-decoration: underline;
+    }
 
-    /* -----------------------------------------------
-       Heading & Subheading
-       ----------------------------------------------- */
-    .page-title {
+    /* ==================================================
+       Header
+       ================================================== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--header-footer-bg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 100;
+    }
+    header .logo-link {
+      display: flex;
+      align-items: center;
+    }
+    header .logo-link img {
+      height: 40px;
+      width: auto;
+      margin-right: 0.5rem;
+    }
+    header .logo-text {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: var(--header-footer-text);
+      line-height: 1;
+    }
+    .menu-toggle {
+      display: none; /* can be enabled if you add a mobile menu later */
+    }
+    header nav {
+      display: flex;
+    }
+    header nav a {
+      margin-left: 1.5rem;
+      font-weight: 500;
+      color: var(--header-footer-text);
+    }
+
+    /* ==================================================
+       Hero Section (Title + Subtitle)
+       ================================================== */
+    .page-hero {
       text-align: center;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+    .page-title {
       font-size: 2.5rem;
-      margin-bottom: 0.5rem;
       color: var(--text-dark);
+      margin-bottom: 0.5rem;
     }
     .page-subtitle {
-      text-align: center;
-      color: var(--text-light);
-      margin-bottom: 2rem;
       font-size: 1.1rem;
+      color: var(--text-light);
     }
 
-    /* -----------------------------------------------
-       Video Grid Container
-       ----------------------------------------------- */
+    /* ==================================================
+       Video Grid Container (30 cards per page)
+       ================================================== */
     #video-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1.5rem;
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    /* -----------------------------------------------
-       Individual Video Card
-       ----------------------------------------------- */
+    /* Each Video Card (16×9 cropping, no black bars) */
     .video-card {
       background: var(--card-bg);
       border-radius: var(--card-border-radius);
@@ -84,12 +145,23 @@
     .video-card:hover {
       transform: translateY(-4px);
     }
-
-    .video-card img {
+    /* Container to enforce 16:9 aspect ratio */
+    .video-thumb-container {
+      position: relative;
       width: 100%;
-      height: auto;
-      display: block;
+      /* 16:9 aspect ratio */
+      padding-top: 56.25%;
+      overflow: hidden;
+      background: #000;
+    }
+    .video-thumb-container img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+      object-position: center center;
     }
 
     .video-info {
@@ -110,48 +182,175 @@
       color: var(--text-light);
     }
 
-    /* -----------------------------------------------
-       Loading Spinner (optional)
-       ----------------------------------------------- */
+    /* ==================================================
+       Loading Text
+       ================================================== */
     #loading {
       text-align: center;
       margin-top: 2rem;
       font-size: 1.2rem;
       color: var(--text-light);
     }
+
+    /* ==================================================
+       Pagination Controls
+       ================================================== */
+    #pagination {
+      margin: 2rem auto;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1rem;
+    }
+    #pagination button {
+      background: var(--accent-color);
+      color: #000;
+      border: none;
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s ease;
+    }
+    #pagination button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    #pagination button:hover:not(:disabled) {
+      background: #d39f38;
+    }
+    #pagination .page-indicator {
+      color: var(--text-dark);
+    }
+
+    /* ==================================================
+       Footer
+       ================================================== */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--header-footer-bg);
+      color: var(--header-footer-text);
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+    footer .footer-logo {
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+    }
+    footer .footer-logo img {
+      height: 40px;
+      width: auto;
+    }
+    footer nav a {
+      color: var(--header-footer-text);
+      margin: 0 0.75rem;
+      font-weight: 500;
+    }
+    footer p {
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    /* ==================================================
+       Responsive: collapse header nav on small screens (optional)
+       ================================================== */
+    @media (max-width: 768px) {
+      header nav {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1 class="page-title">Portfolio &amp; Metrics</h1>
-  <p class="page-subtitle">
-    Displaying all videos from the channel • White card style<br />
-    (Replace this subtitle with your own metrics…)
-  </p>
 
-  <!-- This is where all video‐cards will be inserted -->
+  <!-- ===============================
+       Header (same as other pages)
+       =============================== -->
+  <header>
+    <a href="index.html" class="logo-link">
+      <img src="assets/images/logo.png" alt="Administrative Results Logo" />
+      <span class="logo-text">ADMINISTRATIVE RESULTS</span>
+    </a>
+    <nav id="headerNav">
+      <a href="index.html">Home</a>
+      <a href="videos.html">Videos</a>
+      <a href="service.html">Customer Service</a>
+    </nav>
+  </header>
+
+  <!-- ===============================
+       Hero Title & Subtitle
+       =============================== -->
+  <div class="page-hero">
+    <h1 class="page-title">Please watch...</h1>
+    <p class="page-subtitle">
+        At Administrative Results we strive to educate where we can, and entertain all the time. <br />
+        We are passionate about the 2nd Amendment and the way of life it is meant to preserve.
+    </p>
+  </div>
+
+  <!-- =========================================================
+       Video Grid (cards will be dynamically inserted here)
+       ========================================================= -->
   <div id="video-grid"></div>
   <p id="loading">Loading videos… please wait.</p>
 
-  <script>
-    // ────────────────────────────────
-    //  1) CONFIGURATION
-    // ────────────────────────────────
-    const API_KEY = 'AIzaSyDjwfqf775NaJ0vJyN7eRbp69EFzcNI6WAE';        // ← Replace with your YouTube Data API v3 key
-    const CHANNEL_ID = 'UC3QjBcBCtS4I-OWKpTBBFWA';  // ← Replace with the target channel’s ID
+  <!-- =========================================================
+       Pagination Controls (Prev / Next / Page #)
+       ========================================================= -->
+  <div id="pagination">
+    <button id="prevBtn" disabled>Previous</button>
+    <span class="page-indicator">Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
+    <button id="nextBtn" disabled>Next</button>
+  </div>
 
-    // ────────────────────────────────
-    //  2) UTILITY: Human‐Readable Number Formatter
-    // ────────────────────────────────
+  <!-- ===============================
+       Footer (same as other pages, logo scrolls to top)
+       =============================== -->
+  <footer>
+    <div class="footer-logo">
+      <a href="#hero">
+        <img src="assets/images/logo.png" alt="Back to top" />
+      </a>
+    </div>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="videos.html">Videos</a> |
+      <a href="service.html">Customer Service</a>
+    </nav>
+    <p>&copy; 2025 Administrative Results. All Rights Reserved.</p>
+  </footer>
+
+  <!-- ===============================
+       Script: Fetch + Render + Pagination
+       =============================== -->
+  <script>
+    // ─────────────────────────────────────────────
+    //  1) CONFIGURATION
+    // ─────────────────────────────────────────────
+    const API_KEY    = 'AIzaSyDjwfqf775NaJ0vJyN7eRbp69EFzcNI6WA';        // ← Your YouTube Data API v3 key
+    const CHANNEL_ID = 'UC3QjBcBCtS4I-OWKpTBBFWA';                       // ← The target channel’s ID
+    const PAGE_SIZE  = 30;                                               // videos per page
+
+    // ─────────────────────────────────────────────
+    //  2) UTILITY: Human-Readable Number Formatter
+    // ─────────────────────────────────────────────
     function formatNumber(num) {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    // ────────────────────────────────
+    // ─────────────────────────────────────────────
     //  3) FETCH “Uploads” Playlist ID
-    //     (Every channel has an “uploads” playlist)
-    // ────────────────────────────────
+    // ─────────────────────────────────────────────
     async function fetchUploadsPlaylistId() {
-      const endpoint = `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${CHANNEL_ID}&key=${API_KEY}`;
+      const endpoint = `https://www.googleapis.com/youtube/v3/channels`
+        + `?part=contentDetails&id=${CHANNEL_ID}&key=${API_KEY}`;
       const res = await fetch(endpoint);
       const data = await res.json();
       if (data.items && data.items.length > 0) {
@@ -161,10 +360,9 @@
       }
     }
 
-    // ────────────────────────────────
+    // ─────────────────────────────────────────────
     //  4) FETCH ALL VIDEO IDs from that Playlist
-    //     (Paging through “playlistItems” in blocks of 50)
-    // ────────────────────────────────
+    // ─────────────────────────────────────────────
     async function fetchAllVideoIds(playlistId) {
       let videoIds = [];
       let nextPageToken = '';
@@ -189,10 +387,9 @@
       return videoIds;
     }
 
-    // ────────────────────────────────
-    //  5) FETCH METADATA (snippet + statistics) for all video IDs
-    //     We’ll batch up to 50 IDs per “videos” request
-    // ────────────────────────────────
+    // ─────────────────────────────────────────────
+    //  5) FETCH METADATA (snippet + statistics + contentDetails)
+    // ─────────────────────────────────────────────
     async function fetchVideoDetails(allIds) {
       const BATCH_SIZE = 50;
       let details = [];
@@ -201,7 +398,7 @@
         const batchIds = allIds.slice(i, i + BATCH_SIZE).join(',');
         const url = new URL('https://www.googleapis.com/youtube/v3/videos');
         url.search = new URLSearchParams({
-          part: 'snippet,statistics',
+          part: 'snippet,statistics,contentDetails',
           id: batchIds,
           key: API_KEY
         });
@@ -211,39 +408,67 @@
           details.push(...json.items);
         }
       }
-
       return details;
     }
 
-    // ────────────────────────────────
-    //  6) RENDER CARDS INTO THE DOM
-    // ────────────────────────────────
-    function renderVideoCards(videoItems) {
-      const grid = document.getElementById('video-grid');
-      // Clear loading text:
-      document.getElementById('loading').style.display = 'none';
+    // ─────────────────────────────────────────────
+    //  6) FILTER OUT “Shorts” (videos < 60s) & SORT LATEST FIRST
+    // ─────────────────────────────────────────────
+    function filterLongFormVideos(videoItems) {
+      return videoItems
+        .filter(item => {
+          // contentDetails.duration is ISO 8601, e.g. "PT5M20S", "PT45S", "PT1H2M3S"
+          const dur = item.contentDetails.duration;
+          // If it matches exactly “PT<number>S” → less than 60s → skip
+          // Otherwise keep (so PT1MxxS, PT2M, PT1H… are long-form)
+          return !/^PT\d+S$/.test(dur);
+        })
+        // Sort by publish date (newest first)
+        .sort((a, b) => {
+          const dateA = new Date(a.snippet.publishedAt).getTime();
+          const dateB = new Date(b.snippet.publishedAt).getTime();
+          return dateB - dateA;
+        });
+    }
 
-      videoItems.forEach(item => {
+    // ─────────────────────────────────────────────
+    //  7) RENDER A SINGLE PAGE OF CARDS
+    // ─────────────────────────────────────────────
+    function renderVideoCardsPage(videoItems, pageNum, pageSize) {
+      const grid = document.getElementById('video-grid');
+      grid.innerHTML = ''; // clear existing
+
+      const startIdx = (pageNum - 1) * pageSize;
+      const endIdx   = Math.min(startIdx + pageSize, videoItems.length);
+      const pageItems = videoItems.slice(startIdx, endIdx);
+
+      pageItems.forEach(item => {
         const thumbUrl = item.snippet.thumbnails.high.url;
-        const title = item.snippet.title;
-        const views = item.statistics.viewCount || 0;
-        const videoId = item.id;
+        const title    = item.snippet.title;
+        const views    = item.statistics.viewCount || 0;
+        const videoId  = item.id;
         const watchLink = `https://www.youtube.com/watch?v=${videoId}`;
 
-        // Create the card element
+        // <div class="video-card">
         const card = document.createElement('div');
         card.classList.add('video-card');
 
-        // Thumbnail (clickable)
-        const thumbAnchor = document.createElement('a');
-        thumbAnchor.href = watchLink;
-        thumbAnchor.target = '_blank';
-        thumbAnchor.rel = 'noopener';
+        // 16×9 thumbnail container
+        const thumbContainer = document.createElement('div');
+        thumbContainer.classList.add('video-thumb-container');
 
         const thumbImg = document.createElement('img');
         thumbImg.src = thumbUrl;
         thumbImg.alt = title;
+        // Wrap in <a>
+        const thumbAnchor = document.createElement('a');
+        thumbAnchor.href = watchLink;
+        thumbAnchor.target = '_blank';
+        thumbAnchor.rel = 'noopener';
         thumbAnchor.appendChild(thumbImg);
+
+        thumbContainer.appendChild(thumbAnchor);
+        card.appendChild(thumbContainer);
 
         // Info container
         const info = document.createElement('div');
@@ -259,43 +484,82 @@
         viewsEl.textContent = formatNumber(views) + ' views';
         info.appendChild(viewsEl);
 
-        // Assemble card
-        card.appendChild(thumbAnchor);
         card.appendChild(info);
-
-        // Append to grid
         grid.appendChild(card);
       });
     }
 
-    // ────────────────────────────────
-    //  7) MAIN: Orchestrate All Calls
-    // ────────────────────────────────
+    // ─────────────────────────────────────────────
+    //  8) PAGINATION CONTROLS LOGIC
+    // ─────────────────────────────────────────────
+    let allFilteredVideos = []; // will hold filtered & sorted videos
+    let currentPage = 1;
+    let totalPages = 1;
+
+    function updatePaginationControls() {
+      document.getElementById('currentPage').textContent = currentPage;
+      document.getElementById('totalPages').textContent  = totalPages;
+
+      document.getElementById('prevBtn').disabled = (currentPage <= 1);
+      document.getElementById('nextBtn').disabled = (currentPage >= totalPages);
+    }
+
+    function showPage(pageNum) {
+      currentPage = pageNum;
+      renderVideoCardsPage(allFilteredVideos, currentPage, PAGE_SIZE);
+      updatePaginationControls();
+      // Scroll up so user sees new cards
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentPage > 1) showPage(currentPage - 1);
+    });
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentPage < totalPages) showPage(currentPage + 1);
+    });
+
+    // ─────────────────────────────────────────────
+    //  9) MAIN: Orchestrate All Calls + Initialize
+    // ─────────────────────────────────────────────
     async function init() {
       try {
-        // 1) Get the “uploads” playlist ID
+        // 1) Get uploads playlist
         const uploadsPlaylistId = await fetchUploadsPlaylistId();
 
-        // 2) Get every video ID in that playlist
+        // 2) Get all video IDs from that playlist
         const allVideoIds = await fetchAllVideoIds(uploadsPlaylistId);
 
-        if (allVideoIds.length === 0) {
+        if (!allVideoIds.length) {
           document.getElementById('loading').textContent = 'No videos found on this channel.';
           return;
         }
 
-        // 3) Fetch details (snippet + statistics) for all videos
+        // 3) Fetch details for all videos (snippet + statistics + contentDetails)
         const videoDetails = await fetchVideoDetails(allVideoIds);
 
-        // 4) Render them in white‐background cards
-        renderVideoCards(videoDetails);
-      } catch (err) {
+        // 4) Filter out "shorts" (< 60s) and sort by newest first
+        allFilteredVideos = filterLongFormVideos(videoDetails);
+
+        if (!allFilteredVideos.length) {
+          document.getElementById('loading').textContent = 'No long-form videos found.';
+          return;
+        }
+
+        // 5) Calculate pagination
+        totalPages = Math.ceil(allFilteredVideos.length / PAGE_SIZE);
+
+        // 6) Hide loading text & show first page
+        document.getElementById('loading').style.display = 'none';
+        showPage(1);
+      }
+      catch (err) {
         console.error(err);
-        document.getElementById('loading').textContent = 'An error occurred. See console for details.';
+        document.getElementById('loading').textContent = 'An error occurred. Check console for details.';
       }
     }
 
-    // Kick off the process
+    // Kick off once DOM is ready
     window.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
