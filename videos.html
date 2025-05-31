@@ -53,7 +53,7 @@
 
       /* Only top padding remains for the fixed header */
       padding-top: 4.5rem;
-      padding-bottom: 0; /* Removed bottom padding */
+      padding-bottom: 0;
     }
     a {
       color: var(--accent-color);
@@ -98,14 +98,22 @@
     header .logo-link:focus {
       text-decoration: none;
     }
+
+    /* Hamburger toggle */
     .menu-toggle {
-      display: none; /* can be enabled if you add a mobile menu later */
+      display: none;
+      font-size: 1.5rem;
+      color: var(--header-footer-text);
+      background: none;
+      border: none;
+      cursor: pointer;
     }
+
     header nav {
       display: flex;
+      gap: 1.5rem;
     }
     header nav a {
-      margin-left: 1.5rem;
       font-weight: 500;
       color: var(--header-footer-text);
     }
@@ -237,7 +245,7 @@
     }
 
     /* ==================================================
-       Footer (now static)
+       Footer (static, appears only at page bottom)
        ================================================== */
     footer {
       background: var(--header-footer-bg);
@@ -266,11 +274,29 @@
     }
 
     /* ==================================================
-       Responsive: collapse header nav on small screens (optional)
+       Responsive: collapse header nav on small screens
        ================================================== */
     @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
       header nav {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--header-footer-bg);
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+      }
+      header nav a {
+        padding: 1rem 2rem;
+        border-bottom: 1px solid #222;
+        margin: 0;
+      }
+      header nav.active {
+        display: flex;
       }
     }
   </style>
@@ -278,13 +304,17 @@
 <body>
 
   <!-- ===============================
-       Header (same as other pages)
+       Header (with hamburger on mobile)
        =============================== -->
   <header>
     <a href="index.html" class="logo-link">
       <img src="assets/images/logo.png" alt="Administrative Results Logo" />
       <span class="logo-text">ADMINISTRATIVE RESULTS</span>
     </a>
+
+    <!-- Hamburger toggle button -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
     <nav id="headerNav">
       <a href="index.html">Home</a>
       <a href="videos.html">Videos</a>
@@ -321,11 +351,11 @@
   </div>
 
   <!-- ===============================
-       Footer (static, appears only at page bottom)
+       Footer (static, appears only at bottom of content)
        =============================== -->
   <footer>
     <div class="footer-logo">
-      <a href="index.html">
+      <a href="#hero">
         <img src="assets/images/logo.png" alt="Back to top" />
       </a>
     </div>
@@ -338,9 +368,14 @@
   </footer>
 
   <!-- ===============================
-       Script: Fetch + Render + Pagination
+       Script: Fetch + Render + Pagination + Toggle Menu
        =============================== -->
   <script>
+    // Toggle mobile menu
+    function toggleMenu() {
+      document.getElementById('headerNav').classList.toggle('active');
+    }
+
     // ─────────────────────────────────────────────
     //  1) CONFIGURATION
     // ─────────────────────────────────────────────
