@@ -14,9 +14,21 @@
       --font-sans: 'Oswald', sans-serif;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--bg-dark); color: var(--text-light); font-family: var(--font-sans); overflow-x: hidden; }
-    a { color: var(--accent); text-decoration: none; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: var(--bg-dark);
+      color: var(--text-light);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
 
     /* Header */
     header {
@@ -36,9 +48,20 @@
       font-weight: bold;
       color: var(--text-light);
     }
-    .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; color: var(--text-light); }
-    header nav { display: flex; }
-    header nav a { margin-left: 1.5rem; font-weight: 500; color: var(--text-light); }
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--text-light);
+    }
+    header nav {
+      display: flex;
+    }
+    header nav a {
+      margin-left: 1.5rem;
+      font-weight: 500;
+      color: var(--text-light);
+    }
 
     /* Hero Section */
     #hero {
@@ -60,40 +83,40 @@
       position: absolute;
       top: 0;
       left: 0;
-      width:100%;
-      height:100%;
-      z-index:1;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      background: rgba(0,0,0,0.3);
-      text-align:center;
-      padding:0 1rem;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.3);
+      text-align: center;
+      padding: 0 1rem;
     }
     #hero .overlay h1 {
-      color:#fff;
-      font-size:3rem;
-      margin-bottom:.5rem;
+      color: #fff;
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
     }
     #hero .overlay p {
-      color:#ddd;
-      font-size:1.25rem;
-      margin-bottom:1rem;
+      color: #ddd;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
       max-width: 90%;
     }
     #hero .overlay .btn {
       background: var(--accent);
-      color:#000;
-      padding:0.6rem 1.2rem;
-      font-weight:bold;
-      border:none;
-      cursor:pointer;
-      font-size:1rem;
+      color: #000;
+      padding: 0.6rem 1.2rem;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
       text-decoration: none;
     }
 
-    /* =============================== 
+    /* ===============================
        Updated Features Section (model background + two blocks)
        =============================== */
     #features {
@@ -106,7 +129,7 @@
       background-blend-mode: lighten;
       /* Adjust height as needed—60vh works well on desktop */
       min-height: 60vh;
-      overflow: hidden;
+      overflow: visible; /* allow PNG to spill downward */
     }
 
     /* Container that holds text + rig side by side */
@@ -138,21 +161,24 @@
       width: 50%;
       display: flex;
       justify-content: flex-end; /* pushes the PNG to the right */
+      position: relative; /* needed for absolute positioning of img */
     }
     #features .features-rig img {
-      width: 100%;      /* fill its parent block */
-      max-width: 600px; /* cap on very large screens */
+      position: relative; /* remove it from normal flow so it can overflow */
+      right: 0;           /* keep it flush to the right */
+      bottom: -50%;       /* drop 50% of its own height below the section */
+      width: 120%;        /* make it 20% wider than its container */
+      max-width: none;    /* remove any previous max-width cap */
       filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
     }
 
-    /* =============================== 
+    /* ===============================
        Mobile override: stack text above rig, keep model behind
        =============================== */
     @media (max-width: 768px) {
       #features {
         min-height: 50vh;            /* shorter on mobile */
-        background-position: left center; /* show top of model photo first */
-        /* Do NOT override background with white—keep the blended model */
+        background-position: left center; /* keep model visible on left */
       }
 
       #features .features-container {
@@ -161,15 +187,19 @@
       }
       #features .features-text {
         width: 100%;
-        text-align: center;      /* center text on mobile */
+        text-align: center; /* center text on mobile */
         margin-bottom: 1.5rem;
       }
       #features .features-rig {
         width: 100%;
         justify-content: center; /* center PNG on mobile */
+        /* position: relative remains for absolute img */
       }
       #features .features-rig img {
-        width: 90%;            /* nearly full width on mobile */
+        position: relative; /* ensure overflow behavior */
+        right: 0;
+        bottom: -40%;    /* drop 40% of its own height below the section on mobile */
+        width: 130%;     /* even wider on mobile for larger overlap */
         max-width: none;
       }
     }
@@ -216,7 +246,7 @@
     }
     #rig-info .placeholder {
       width: 45%;
-      aspect-ratio: 16 / 9;  /* forces 16∶9 ratio */
+      aspect-ratio: 16 / 9; /* forces 16∶9 ratio */
       object-fit: cover;
       display: block;
       border-radius: 0.5rem;
@@ -224,7 +254,7 @@
     }
     #rig-info .description {
       width: 50%;
-      color: #000;           /* ensure black text everywhere */
+      color: #000; /* ensure black text everywhere */
       padding-left: 2rem;
     }
     #rig-info .description p {
@@ -290,7 +320,7 @@
     }
 
     /* Mobile-specific adjustments */
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
       .menu-toggle {
         display: block;
       }
@@ -325,7 +355,8 @@
         padding: 0.5rem 1rem;
       }
 
-      /* These old rules have been removed, so background stays visible. */
+      /* Remove old rules for #features image stacking/clipping,
+         so the background remains visible. */
       #rig-info .container {
         flex-direction: column;
       }
@@ -347,14 +378,14 @@
       }
     }
 
-    /* =============================== 
-       Mobile tweaks: make hero taller 
+    /* ===============================
+       Mobile tweaks: make hero taller
        =============================== */
     @media (max-width: 768px) {
       /* 1) Make the hero at least 40vh tall (instead of 16∶9) */
       #hero {
-        aspect-ratio: unset;    /* drop the 16∶9 rule on mobile */
-        height: 40vh;           /* adjust this as needed */
+        aspect-ratio: unset; /* drop the 16∶9 rule on mobile */
+        height: 40vh; /* adjust this as needed */
       }
 
       #hero video {
@@ -394,7 +425,7 @@
       <div class="features-text">
         <h2>Versatile Load Capacity</h2>
         <p>
-          Two saddlebags fit dual 2-quart canteens, plus extra pouches for admin gear, radios, 
+          Two saddlebags fit dual 2-quart canteens, plus extra pouches for admin gear, radios,
           and general-purpose storage.
         </p>
       </div>
