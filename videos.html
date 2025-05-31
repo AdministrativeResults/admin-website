@@ -11,7 +11,7 @@
     rel="stylesheet"
   />
 
-  <!-- Font Awesome for potential future icons (optional) -->
+  <!-- Font Awesome (optional) -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -34,7 +34,7 @@
       --text-light: #666666;
 
       /* Header/Footer background (dark grey) */
-      --header-footer-bg: #333333;
+      --header-footer-bg: #111111;
       --header-footer-text: #eeeeee;
     }
     *, *::before, *::after {
@@ -50,8 +50,10 @@
       color: var(--text-dark);
       font-family: var(--font-sans);
       line-height: 1.5;
-      padding-top: 4.5rem; /* offset for fixed header */
-      padding-bottom: 4.5rem; /* offset for footer */
+
+      /* ↑↑↑ Increase bottom padding so pagination never hides behind the footer ↑↑↑ */
+      padding-top: 4.5rem;   /* offset for fixed header */
+      padding-bottom: 8rem; /* <- bumped up from 4.5rem to 8rem */
     }
     a {
       color: var(--accent-color);
@@ -197,6 +199,10 @@
        ================================================== */
     #pagination {
       margin: 2rem auto;
+
+      /* ↑↑↑ Add bottom margin so these buttons never butt right up against the footer ↑↑↑ */
+      margin-bottom: 4rem;
+
       text-align: center;
       display: flex;
       justify-content: center;
@@ -290,8 +296,8 @@
   <div class="page-hero">
     <h1 class="page-title">Please watch...</h1>
     <p class="page-subtitle">
-        At Administrative Results we strive to educate where we can, and entertain all the time. <br />
-        We are passionate about the 2nd Amendment and the way of life it is meant to preserve.
+      At Administrative Results we strive to educate where we can, and entertain all the time. <br />
+      We are passionate about the 2nd Amendment and the way of life it is meant to preserve.
     </p>
   </div>
 
@@ -306,7 +312,9 @@
        ========================================================= -->
   <div id="pagination">
     <button id="prevBtn" disabled>Previous</button>
-    <span class="page-indicator">Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
+    <span class="page-indicator">
+      Page <span id="currentPage">1</span> of <span id="totalPages">1</span>
+    </span>
     <button id="nextBtn" disabled>Next</button>
   </div>
 
