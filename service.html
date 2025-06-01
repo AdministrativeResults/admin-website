@@ -8,13 +8,9 @@
   <title>Customer Service | ADMINISTRATIVE RESULTS</title>
 
   <!-- Favicon -->
-  <link
-    rel="icon"
-    href="assets/images/favicon.png"
-    type="image/png"
-  />
+  <link rel="icon" href="assets/images/favicon.png" type="image/png" />
 
-  <!-- Social Sharing Tags (same as index) -->
+  <!-- Social Sharing Tags -->
   <meta property="og:title" content="Home of the AR64A" />
   <meta property="og:description" content="The AR64A H-Harness Patrol Rig—private-merc vibes, built for operators." />
   <meta property="og:image" content="https://administrativeresults.github.io/assets/images/preview.jpg" />
@@ -27,13 +23,15 @@
   <meta name="twitter:description" content="The AR64A H-Harness Patrol Rig—private-merc vibes, built for operators." />
   <meta name="twitter:image" content="https://administrativeresults.github.io/assets/images/preview.jpg" />
 
-  <!-- Google Font -->
+  <!-- Inter Font (matching index) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
 
-  <!-- Font Awesome 6.x Free CSS -->
+  <!-- Font Awesome (for icons) -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -43,95 +41,166 @@
   />
 
   <style>
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Root Variables (aligned with index)
+       ───────────────────────────────────────────────────────────────────────────── */
     :root {
-      --bg-dark: #111;
-      --text-light: #eee;
-      --accent: #e4ac45;
-      --font-sans: 'Oswald', sans-serif;
+      --header-footer-bg: #fff;        /* white for header/footer */
+      --text-dark: #000;               /* black text */
+      --bg-dark: #111;                 /* dark page background */
+      --text-light: #eee;              /* light text on dark sections */
+      --accent: #e4ac45;               /* yellow accent */
+      --font-sans: 'Inter', sans-serif;/* Inter font */
       --card-bg: #fff;
       --card-border-radius: 0.5rem;
       --card-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-      --mid-grey: #111111;
+      --icon-filter: brightness(0) saturate(100%) invert(20%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(120%) contrast(100%);
+      --icon-hover-filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(140%) contrast(110%);
     }
 
-    /* Enable smooth scrolling for anchor links */
+    /* Smooth scrolling */
     html {
       scroll-behavior: smooth;
     }
 
-    * {
+    /* Reset & Box-Sizing */
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
+    /* ─────────────────────────── Body & Links ─────────────────────────── */
     body {
       background: var(--bg-dark);
       color: var(--text-light);
       font-family: var(--font-sans);
+      line-height: 1.6;
       overflow-x: hidden;
-      line-height: 1.5;
     }
     a {
       color: var(--accent);
       text-decoration: none;
     }
+    /* Disable underline on hover */
+    a:hover {
+      text-decoration: none;
+    }
 
-    /* --------------------
-       Header (logo + nav)
-       -------------------- */
+    /* ─────────────────────── Global .btn ─────────────────────── */
+    .btn {
+      background: var(--accent);
+      color: #000;
+      padding: 0.6rem 1.2rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      display: inline-block;
+      border-radius: 0.25rem;
+      transition: background 0.2s ease;
+    }
+    .btn:hover {
+      background: #ffd659;
+    }
+
+    /* ───────────────────────────── Header ───────────────────────────── */
     header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
+      height: 4rem;
+      background: var(--header-footer-bg);
+      color: var(--text-dark);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
-      background: var(--mid-grey);
+      justify-content: space-between;
+      padding: 0 2rem;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
       z-index: 100;
     }
     header .logo-link {
       display: flex;
       align-items: center;
       text-decoration: none;
+      color: var(--text-dark);
     }
     header .logo-link img {
-      height: 40px;
+      height: 32px;
       width: auto;
       margin-right: 0.5rem;
+      filter: none;
     }
     header .logo-text {
-      font-size: 1.25rem;
-      font-weight: bold;
-      color: var(--text-light);
-      line-height: 1;
-    }
-    .menu-toggle {
-      display: none;
-      cursor: pointer;
-      font-size: 1.5rem;
-      color: var(--text-light);
-    }
-    header nav {
-      display: flex;
-    }
-    header nav a {
-      margin-left: 1.5rem;
-      font-weight: 500;
-      color: var(--text-light);
+      font-size: 1.125rem;
+      font-weight: 600;
     }
 
-    /* ===============================
-       Hero Section (forced 16∶9 on desktop)
-       =============================== */
+    /* Desktop nav links */
+    header nav.desktop-nav {
+      display: flex;
+      gap: 2rem;
+    }
+    header nav.desktop-nav a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+    header nav.desktop-nav a:hover {
+      color: var(--accent);
+    }
+
+    /* Mobile hamburger */
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-dark);
+    }
+
+    /* Mobile nav (hidden by default) */
+    header nav#mobileMenu {
+      display: none;
+      position: absolute;
+      top: 4rem;
+      right: 0;                   /* align to right for thumb access */
+      width: 100%;
+      background: var(--header-footer-bg);
+      flex-direction: column;
+      text-align: right;         /* right-align link text */
+    }
+    header nav#mobileMenu a {
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #ddd;
+      color: var(--text-dark);
+      font-size: 1rem;
+      font-weight: 500;
+      text-align: right;
+    }
+    header nav#mobileMenu a:hover {
+      background: #f5f5f5;
+    }
+
+    @media (max-width: 768px) {
+      header nav.desktop-nav {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      header nav#mobileMenu.active {
+        display: flex;
+      }
+    }
+
+    /* ─────────────────────────── Hero Section ─────────────────────────── */
     #hero {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9;
-      height: auto;
+      aspect-ratio: 16/9;
       overflow: hidden;
-      margin-top: 4rem;
+      margin-top: 4rem; /* push below header */
       background: #000;
     }
     #hero video {
@@ -141,7 +210,6 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center center;
       z-index: 0;
     }
     #hero .overlay {
@@ -155,39 +223,37 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.3);
       text-align: center;
       padding: 0 1rem;
     }
-    #hero .overlay h2 {
+    #hero .overlay h1 {
       color: #fff;
       font-size: 2rem;
       margin-bottom: 1rem;
-      max-width: 90%;
+      font-weight: 700;
     }
     #hero .overlay p {
       color: #ddd;
-      font-size: 1.25rem;
-      max-width: 600px;
+      font-size: 1rem;
+      max-width: 80%;
       line-height: 1.4;
+      font-weight: 400;
     }
     @media (max-width: 768px) {
       #hero {
-        aspect-ratio: auto;
+        aspect-ratio: none;
         height: 40vh;
       }
-      #hero .overlay h2 {
+      #hero .overlay h1 {
         font-size: 1.5rem;
       }
       #hero .overlay p {
-        font-size: 1rem;
-        line-height: 1.3;
+        font-size: 0.9rem;
       }
     }
 
-    /* ===============================
-       Shipping & Returns Section
-       =============================== */
+    /* ───────────────────────── Policies Section ───────────────────────── */
     #policies {
       background: #fff;
       color: #000;
@@ -199,6 +265,7 @@
       display: flex;
       gap: 2rem;
       justify-content: space-between;
+      flex-wrap: wrap;
     }
     .policy-card {
       flex: 1 1 45%;
@@ -219,6 +286,11 @@
       font-size: 1rem;
       line-height: 1.6;
       color: #333;
+      margin-bottom: 1rem;
+    }
+    .policy-card a {
+      color: var(--accent);
+      font-weight: 500;
     }
     @media (max-width: 768px) {
       #policies .policies-container {
@@ -226,82 +298,91 @@
       }
       .policy-card {
         width: 100%;
-        margin-bottom: 2rem;
       }
     }
 
-    /* ===============================
-       Footer
-       =============================== */
+    /* ───────────────────────────── Footer ───────────────────────────── */
     footer {
-      background: var(--mid-grey);
-      padding: 2rem;
-      text-align: center;
-      color: var(--text-light);
-      margin-top: 2rem;
+      background: var(--header-footer-bg);
+      color: var(--text-dark);
+      padding: 2rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.05);
     }
-    footer .footer-logo {
-      display: inline-block;
-      margin-bottom: 1rem;
-      cursor: pointer;
+    /* Left: Sponsor Logos (if needed; can be kept or removed) */
+    footer .sponsors {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
     }
-    footer .footer-logo img {
-      height: 40px;
+    footer .sponsors a img {
+      height: 32px;
       width: auto;
+      object-fit: contain;
+      filter: var(--icon-filter);
+      transition: filter 0.15s ease;
     }
-    footer nav a {
-      margin: 0 1rem;
-      color: var(--text-light);
-      font-weight: 500;
+    footer .sponsors a img:hover {
+      filter: var(--icon-hover-filter);
     }
-    footer p {
-      margin-top: 1rem;
-      font-size: 0.9rem;
+    /* Right: Social Media Icons */
+    footer .social-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    footer .social-links a img {
+      height: 24px;
+      width: 24px;
+      object-fit: contain;
+      filter: var(--icon-filter);
+      transition: filter 0.15s ease;
+    }
+    footer .social-links a img:hover {
+      filter: var(--icon-hover-filter);
     }
 
-    /* --------------------
-       Mobile (≤768px) Header Nav
-       -------------------- */
     @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-      header nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background: var(--mid-grey);
-        width: 100%;
+      footer {
         flex-direction: column;
+        text-align: center;
       }
-      header nav a {
-        padding: 1rem;
-        border-bottom: 1px solid #222;
-        margin: 0;
-      }
-      header nav.active {
-        display: flex;
+      footer .sponsors,
+      footer .social-links {
+        margin-bottom: 1rem;
       }
     }
   </style>
 </head>
+
 <body>
   <!-- Header -->
   <header>
+    <!-- Left: Logo + Text -->
     <a href="index.html" class="logo-link">
       <img src="assets/images/logo.png" alt="Administrative Results Logo" />
       <span class="logo-text">ADMINISTRATIVE RESULTS</span>
     </a>
+
+    <!-- Desktop navigation links -->
+    <nav class="desktop-nav">
+      <a href="videos.html">Videos</a>
+      <a href="service.html">Customer Service</a>
+    </nav>
+
+    <!-- Mobile hamburger -->
     <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
     <nav id="mobileMenu">
-      <a href="index.html">Home</a>
       <a href="videos.html">Videos</a>
       <a href="service.html">Customer Service</a>
     </nav>
   </header>
 
-  <!-- Hero Section (with new Mux playback ID) -->
+  <!-- Hero Section -->
   <section id="hero">
     <video
       id="heroVideo"
@@ -313,20 +394,20 @@
       poster="assets/images/hero-placeholder.jpg"
     ></video>
     <div class="overlay">
-      <h2>
+      <h1>
         PLEASE EMAIL<br />
-        <a href="mailto:support@3fsupply.com" style="color: #fff; text-decoration: underline;">
+        <a href="mailto:support@3fsupply.com" style="color: #fff;">
           support@3fsupply.com
         </a><br />
-        for customer support regarding the rigs.
-      </h2>
-      <p style="opacity: 0.8; font-size: 0.95rem;">
+        FOR CUSTOMER SUPPORT.
+      </h1>
+      <p style="opacity: 0.8;">
         Our team will reply as soon as possible.
       </p>
     </div>
   </section>
 
-  <!-- Shipping & Returns Section -->
+  <!-- Policies Section -->
   <section id="policies">
     <div class="policies-container">
       <!-- Shipping Policy Card -->
@@ -363,18 +444,31 @@
 
   <!-- Footer -->
   <footer>
-    <div class="footer-logo">
-      <a href="#hero">
-        <img src="assets/images/logo.png" alt="Back to top" />
+    <!-- Left: Sponsor Logos (if desired) -->
+    <div class="sponsors">
+      <a href="https://sponsor1.example.com" target="_blank" rel="noopener">
+        <img src="assets/images/sponsor1-logo.png" alt="Sponsor 1" />
+      </a>
+      <a href="https://sponsor2.example.com" target="_blank" rel="noopener">
+        <img src="assets/images/sponsor2-logo.png" alt="Sponsor 2" />
+      </a>
+      <a href="https://sponsor3.example.com" target="_blank" rel="noopener">
+        <img src="assets/images/sponsor3-logo.png" alt="Sponsor 3" />
       </a>
     </div>
 
-    <nav>
-      <a href="index.html">Home</a> |
-      <a href="videos.html">Videos</a> |
-      <a href="service.html">Customer Service</a>
-    </nav>
-    <p>&copy; 2025 Administrative Results. All Rights Reserved.</p>
+    <!-- Right: Social Media Icons -->
+    <div class="social-links">
+      <a href="https://www.youtube.com/@AdministrativeResults" target="_blank" rel="noopener">
+        <img src="assets/images/youTube-icon.png" alt="YouTube" />
+      </a>
+      <a href="https://www.instagram.com/administrativeresults" target="_blank" rel="noopener">
+        <img src="assets/images/instagram-icon.png" alt="Instagram" />
+      </a>
+      <a href="https://pepperbox.example.com" target="_blank" rel="noopener">
+        <img src="assets/images/pepperbox-icon.png" alt="Pepperbox" />
+      </a>
+    </div>
   </footer>
 
   <!-- Hamburger Menu Script -->
@@ -384,32 +478,27 @@
     }
   </script>
 
-  <!-- Hls.js (for browsers that don’t support HLS natively) -->
+  <!-- Hls.js (for hero video) -->
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
-    // New Mux Playback ID for customer service header:
     const playbackId = 'pRJd3kY2FKL2TKKRYGYM00HJk1hVM97H0100w01tx71E9zU';
     const hlsUrl = `https://stream.mux.com/${playbackId}.m3u8`;
     const videoEl = document.getElementById('heroVideo');
 
     if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
-      // Native HLS support (Safari, iOS)
       videoEl.src = hlsUrl;
-    }
-    else if (Hls.isSupported()) {
-      // hls.js fallback for other browsers
+    } else if (Hls.isSupported()) {
       const hls = new Hls();
       hls.loadSource(hlsUrl);
       hls.attachMedia(videoEl);
       hls.on(Hls.Events.MANIFEST_PARSED, function () {
-        videoEl.play().catch(err => {
+        videoEl.play().catch((err) => {
           console.warn('Autoplay prevented:', err);
         });
       });
-    }
-    else {
-      console.error('HLS is not supported in this browser.');
-      // Optional static MP4 fallback:
+    } else {
+      console.error('HLS not supported.');
+      // Optionally fallback to MP4:
       // videoEl.src = 'assets/videos/hero-fallback.mp4';
     }
   </script>
