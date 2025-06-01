@@ -35,14 +35,13 @@
   <style>
     /* Root Variables */
     :root {
-      --header-footer-bg: #fff;      /* white header/footer */
-      --text-dark: #000;             /* black text */
-      --bg-dark: #111;               /* page background */
-      --text-light: #eee;            /* light text on dark */
-      --accent: #e4ac45;             /* yellow accent */
+      --header-footer-bg: #fff;
+      --text-dark: #000;
+      --bg-light: #fff;
+      --accent: #e4ac45;
       --font-sans: 'Inter', sans-serif;
-      --icon-filter: brightness(0) saturate(100%) invert(20%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(120%) contrast(100%);
-      --icon-hover-filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(140%) contrast(110%);
+      --icon-opacity: 0.5;
+      --icon-opacity-hover: 1;
     }
 
     html {
@@ -58,8 +57,8 @@
 
     /* Body & Links */
     body {
-      background: var(--bg-dark);
-      color: var(--text-light);
+      background: var(--bg-light);
+      color: var(--text-dark);
       font-family: var(--font-sans);
       line-height: 1.6;
       overflow-x: hidden;
@@ -68,7 +67,6 @@
       color: var(--accent);
       text-decoration: none;
     }
-    /* Disable underline on hover for all links */
     a:hover {
       text-decoration: none;
     }
@@ -85,12 +83,13 @@
       display: inline-block;
       border-radius: 0.25rem;
       transition: background 0.2s ease;
+      text-decoration: none;
     }
     .btn:hover {
       background: #ffd659;
     }
 
-    /* Header */
+    /* Header (unchanged) */
     header {
       position: fixed;
       top: 0;
@@ -103,7 +102,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 2rem;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: none;
       z-index: 100;
     }
     header .logo-link {
@@ -116,14 +115,11 @@
       height: 32px;
       width: auto;
       margin-right: 0.5rem;
-      filter: none;
     }
     header .logo-text {
       font-size: 1.125rem;
       font-weight: 600;
     }
-
-    /* Desktop nav links */
     header nav.desktop-nav {
       display: flex;
       gap: 2rem;
@@ -136,25 +132,23 @@
     header nav.desktop-nav a:hover {
       color: var(--accent);
     }
-
-    /* Mobile hamburger */
     .menu-toggle {
       display: none;
       font-size: 1.5rem;
       cursor: pointer;
       color: var(--text-dark);
+      background: none;
+      border: none;
     }
-
-    /* Mobile nav (hidden by default) */
     header nav#mobileMenu {
       display: none;
       position: absolute;
       top: 4rem;
-      right: 0;                   /* align entire menu to the right */
+      right: 0;
       width: 100%;
       background: var(--header-footer-bg);
       flex-direction: column;
-      text-align: right;         /* right-align link text */
+      text-align: right;
     }
     header nav#mobileMenu a {
       padding: 1rem 2rem;
@@ -162,12 +156,10 @@
       color: var(--text-dark);
       font-size: 1rem;
       font-weight: 500;
-      text-align: right;         /* ensure the words themselves are near the right edge */
     }
     header nav#mobileMenu a:hover {
       background: #f5f5f5;
     }
-
     @media (max-width: 768px) {
       header nav.desktop-nav {
         display: none;
@@ -187,6 +179,7 @@
       aspect-ratio: 16/9;
       overflow: hidden;
       margin-top: 4rem;
+      background: #000;
     }
     #hero video {
       position: absolute;
@@ -225,10 +218,6 @@
       max-width: 90%;
       font-weight: 400;
     }
-    #hero .overlay .btn {
-      font-weight: 600;
-    }
-
     @media (max-width: 768px) {
       #hero {
         aspect-ratio: none;
@@ -252,7 +241,7 @@
     #features {
       position: relative;
       width: 100%;
-      background-color: #fff;
+      background-color: var(--bg-light);
       background-image: url('assets/images/model-wear 1.jpg');
       background-position: left center;
       background-repeat: no-repeat;
@@ -324,7 +313,7 @@
       width: 100vw;
       margin-left: 50%;
       transform: translateX(-50%);
-      background: #fff !important;
+      background: var(--bg-light);
       padding: 3rem 2rem 1.5rem;
     }
     #features-list .container {
@@ -361,9 +350,9 @@
       }
     }
 
-    /* Rig Description */
+    /* Rig Description Section */
     #rig-info {
-      background: #fff;
+      background: var(--bg-light);
       padding: 2rem 2rem 4rem;
     }
     #rig-info .container {
@@ -379,7 +368,7 @@
       object-fit: cover;
       display: block;
       border-radius: 0.5rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3));
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
     #rig-info .description {
       width: 50%;
@@ -407,41 +396,42 @@
 
     /* History Section */
     #history {
-      position: relative;
-      padding: 6rem 2rem;
-    }
-    #history video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.3;
-    }
-    #history .content {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-      z-index: 1;
-    }
-    #history h2 {
-      color: #fff;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
-    #history p {
-      color: #ddd;
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      font-weight: 400;
+  position: relative;
+  padding: 6rem 2rem;
+  background: var(--bg-light); /* keep white behind video if you want */
+}
+#history video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1; /* removed any transparency */
+}
+#history .content {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  z-index: 1;
+}
+#history h2 {
+  color: #fff;      /* now white */
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+#history p {
+  color: #fff;      /* now white */
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
     }
 
     /* Footer */
     footer {
-      background: var(--header-footer-bg);
+      background: var(--bg-light);
       color: var(--text-dark);
       padding: 2rem 2rem;
       display: flex;
@@ -449,9 +439,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.05);
+      box-shadow: none;
     }
-    /* Left: Sponsor Logos */
     footer .sponsors {
       display: flex;
       gap: 1.5rem;
@@ -461,13 +450,12 @@
       height: 32px;
       width: auto;
       object-fit: contain;
-      filter: var(--icon-filter);
-      transition: filter 0.15s ease;
+      opacity: var(--icon-opacity);
+      transition: opacity 0.15s ease;
     }
     footer .sponsors a img:hover {
-      filter: var(--icon-hover-filter);
+      opacity: var(--icon-opacity-hover);
     }
-    /* Right: Social Icons */
     footer .social-links {
       display: flex;
       gap: 1.5rem;
@@ -477,13 +465,12 @@
       height: 24px;
       width: 24px;
       object-fit: contain;
-      filter: var(--icon-filter);
-      transition: filter 0.15s ease;
+      opacity: var(--icon-opacity);
+      transition: opacity 0.15s ease;
     }
     footer .social-links a img:hover {
-      filter: var(--icon-hover-filter);
+      opacity: var(--icon-opacity-hover);
     }
-
     @media (max-width: 768px) {
       footer {
         flex-direction: column;
@@ -496,24 +483,20 @@
     }
   </style>
 </head>
-
 <body>
   <!-- Header -->
   <header>
-    <!-- Left: Logo + Text -->
     <a href="index.html" class="logo-link">
       <img src="assets/images/logo.png" alt="Administrative Results Logo" />
       <span class="logo-text">ADMINISTRATIVE RESULTS</span>
     </a>
 
-    <!-- Desktop navigation links -->
     <nav class="desktop-nav">
       <a href="videos.html">Videos</a>
       <a href="service.html">Customer Service</a>
     </nav>
 
-    <!-- Mobile hamburger -->
-    <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <nav id="mobileMenu">
       <a href="videos.html">Videos</a>
       <a href="service.html">Customer Service</a>
@@ -533,31 +516,18 @@
     ></video>
     <div class="overlay">
       <h1>AR64A H-Harness Patrol Rig</h1>
-      <p>
-        The ultimate patrol rig engineered for elite mercenary operations. Lightweight, modular, and
-        built to perform under the harshest conditions.
-      </p>
-      <a
-        class="btn"
-        href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig"
-      >
-        Get Yours Now
-      </a>
+      <p>The ultimate patrol rig engineered for elite mercenary operations. Lightweight, modular, and built to perform under the harshest conditions.</p>
+      <a class="btn" href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig">Get Yours Now</a>
     </div>
   </section>
 
   <!-- Simplified Features Section -->
   <section id="features">
     <div class="features-container">
-      <!-- Text block -->
       <div class="features-text">
         <h2>Versatile Load Capacity</h2>
-        <p>
-          Two saddlebags fit dual 2-quart canteens, plus extra pouches for admin gear, radios, and
-          general-purpose storage.
-        </p>
+        <p>Two saddlebags fit dual 2-quart canteens, plus extra pouches for admin gear, radios, and general-purpose storage.</p>
       </div>
-      <!-- Rig block -->
       <div class="features-rig">
         <img src="assets/images/rig-front.png" alt="AR64A Rig" />
       </div>
@@ -573,17 +543,11 @@
       </div>
       <div class="feature">
         <h3>Built for Patrol</h3>
-        <p>
-          Overhauled design featuring reinforced stitching, modern elastic, and upgraded buckles for
-          durability.
-        </p>
+        <p>Overhauled design featuring reinforced stitching, modern elastic, and upgraded buckles for durability.</p>
       </div>
       <div class="feature">
         <h3>Versatile Load Capacity</h3>
-        <p>
-          Two saddlebags fit dual 2-quart canteens, plus extra pouches for admin gear, radios, and
-          general-purpose storage.
-        </p>
+        <p>Two saddlebags fit dual 2-quart canteens, plus extra pouches for admin gear, radios, and general-purpose storage.</p>
       </div>
     </div>
   </section>
@@ -598,20 +562,10 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
       ></iframe>
-      <div class="description" style="line-height: 1.8;">
-        <p>
-          The AR64A was redesigned from the ground up — stronger stitching, better elastic, upgraded
-          buckles. It works. It carries everything you need and nothing you don’t. Mags, belt-fed
-          drums, two 2-quart canteens. Radio. Admin. General-purpose junk. It fits.
-        </p>
-        <p>
-          It’s meant to be worn over armor or under a pack. The straps adjust to accommodate the end
-          user.
-        </p>
-        <p>
-          This is probably the last H-Harness you’ll buy — unless you lose it. Dump pouch and
-          additional gear not included.
-        </p>
+      <div class="description" style="line-height: 1.8; color: #000;">
+        <p>The AR64A was redesigned from the ground up — stronger stitching, better elastic, upgraded buckles. It works. It carries everything you need and nothing you don’t. Mags, belt-fed drums, two 2-quart canteens. Radio. Admin. General-purpose junk. It fits.</p>
+        <p>It’s meant to be worn over armor or under a pack. The straps adjust to accommodate the end user.</p>
+        <p>This is probably the last H-Harness you’ll buy — unless you lose it. Dump pouch and additional gear not included.</p>
         <p><em>Black accents on Ranger Green are pre-production.</em></p>
       </div>
     </div>
@@ -622,25 +576,13 @@
     <video src="assets/videos/history-bg.mp4" autoplay muted loop playsinline></video>
     <div class="content">
       <h2>History of the AR64A</h2>
-      <p>
-        The AR64A Rig is based on the South African 32 Battalion H-Harness that saw wide usage in the
-        later Cold War years between 1969-1989. The original SDF 32 Battalion H-Harness has been a
-        staple of Administrative Results from the very beginning. It is our privilege to bring to life
-        a completely enhanced version of this awesome piece of equipment in Ranger Green and Multicam.
-      </p>
-      <a
-        href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig"
-        class="btn"
-        style="margin-top: 1rem;"
-      >
-        Get Yours Now
-      </a>
+      <p>The AR64A Rig is based on the South African 32 Battalion H-Harness that saw wide usage in the later Cold War years between 1969-1989. The original SDF 32 Battalion H-Harness has been a staple of Administrative Results from the very beginning. It is our privilege to bring to life a completely enhanced version of this awesome piece of equipment in Ranger Green and Multicam.</p>
+      <a href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig" class="btn" style="margin-top: 1rem;">Get Yours Now</a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <!-- Left: Sponsor Logos -->
     <div class="sponsors">
       <a href="https://badlandsmunitionsco.com/" target="_blank" rel="noopener">
         <img src="assets/images/sponsor1-logo.png" alt="Sponsor 1" />
@@ -652,8 +594,6 @@
         <img src="assets/images/sponsor3-logo.png" alt="Sponsor 3" />
       </a>
     </div>
-
-    <!-- Right: Social Media Icons -->
     <div class="social-links">
       <a href="https://www.youtube.com/@AdministrativeResults" target="_blank" rel="noopener">
         <img src="assets/images/youTube-icon.png" alt="YouTube" />
@@ -661,7 +601,7 @@
       <a href="https://www.instagram.com/administrativeresults" target="_blank" rel="noopener">
         <img src="assets/images/instagram-icon.png" alt="Instagram" />
       </a>
-      <a href="https://www.pepperbox.tv/" target="_blank" rel="noopener">
+      <a href="https://pepperbox.tv/" target="_blank" rel="noopener">
         <img src="assets/images/pepperbox-icon.png" alt="Pepperbox" />
       </a>
     </div>
@@ -688,13 +628,13 @@
       hls.loadSource(hlsUrl);
       hls.attachMedia(videoEl);
       hls.on(Hls.Events.MANIFEST_PARSED, function () {
-        videoEl.play().catch((err) => {
+        videoEl.play().catch(err => {
           console.warn('Autoplay prevented:', err);
         });
       });
     } else {
       console.error('HLS is not supported in this browser.');
-      // Optionally show a static fallback:
+      // Optionally fallback to MP4:
       // videoEl.src = 'assets/videos/hero-fallback.mp4';
     }
   </script>
