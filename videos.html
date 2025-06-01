@@ -54,6 +54,7 @@
       --card-shadow: rgba(0,0,0,0.1) 0px 4px 12px;
       --icon-filter: none;        /* Icons show in original */
       --icon-hover-filter: none;
+      --footer-link-hover: #666666; /* Grey on hover, if any text links appear */
     }
 
     /* Smooth scrolling */
@@ -98,7 +99,8 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 2rem;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      /* Removed drop shadow */
+      box-shadow: none;
       z-index: 100;
     }
     header .logo-link {
@@ -146,7 +148,8 @@
       background: var(--background);
       flex-direction: column;
       text-align: right;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      /* Removed drop shadow */
+      box-shadow: none;
     }
     header nav#mobileMenu a {
       padding: 1rem 2rem;
@@ -293,57 +296,63 @@
     }
 
     /* ───────────────────────────── Footer ───────────────────────────── */
-    footer {
-      background: var(--background);
-      color: var(--text-color);
-      padding: 2rem 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
-    }
-    footer .sponsors {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-    footer .sponsors a img {
-      height: 32px;
-      width: auto;
-      object-fit: contain;
-      filter: var(--icon-filter);
-      transition: filter 0.15s ease;
-    }
-    footer .sponsors a img:hover {
-      filter: var(--icon-hover-filter);
-    }
-    footer .social-links {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-    footer .social-links a img {
-      height: 24px;
-      width: 24px;
-      object-fit: contain;
-      filter: var(--icon-filter);
-      transition: filter 0.15s ease;
-    }
-    footer .social-links a img:hover {
-      filter: var(--icon-hover-filter);
-    }
-    @media (max-width: 768px) {
-      footer {
-        flex-direction: column;
-        text-align: center;
-      }
-      footer .sponsors,
-      footer .social-links {
-        margin-bottom: 1rem;
-      }
-    }
+footer {
+  background: var(--background);
+  color: var(--text-color);
+  padding: 2rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  /* No drop shadow/separator */
+  box-shadow: none;
+}
+
+/* Footer: sponsors on the left */
+footer .sponsors {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+footer .sponsors a img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.5;                     /* start faded */
+  transition: opacity 0.15s ease;   /* fade transition */
+}
+footer .sponsors a img:hover {
+  opacity: 1;                       /* fully opaque on hover */
+}
+
+/* Footer: social links on the right */
+footer .social-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+footer .social-links a img {
+  height: 24px;
+  width: 24px;
+  object-fit: contain;
+  opacity: 0.5;                     /* start faded */
+  transition: opacity 0.15s ease;   /* fade transition */
+}
+footer .social-links a img:hover {
+  opacity: 1;                       /* fully opaque on hover */
+}
+
+@media (max-width: 768px) {
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+  footer .sponsors,
+  footer .social-links {
+    margin-bottom: 1rem;
+  }
+}
   </style>
 </head>
 
@@ -390,18 +399,20 @@
 
   <!-- Footer -->
   <footer>
+    <!-- Left: Sponsor Logos -->
     <div class="sponsors">
-      <a href="https://sponsor1.example.com" target="_blank" rel="noopener">
+      <a href="https://badlandsmunitionsco.com/" target="_blank" rel="noopener">
         <img src="assets/images/sponsor1-logo.png" alt="Sponsor 1" />
       </a>
-      <a href="https://sponsor2.example.com" target="_blank" rel="noopener">
+      <a href="https://www.americanapipedream.com/" target="_blank" rel="noopener">
         <img src="assets/images/sponsor2-logo.png" alt="Sponsor 2" />
       </a>
-      <a href="https://sponsor3.example.com" target="_blank" rel="noopener">
+      <a href="https://www.opticsplanet.com/" target="_blank" rel="noopener">
         <img src="assets/images/sponsor3-logo.png" alt="Sponsor 3" />
       </a>
     </div>
 
+    <!-- Right: Social Media Icons -->
     <div class="social-links">
       <a href="https://www.youtube.com/@AdministrativeResults" target="_blank" rel="noopener">
         <img src="assets/images/youTube-icon.png" alt="YouTube" />
@@ -409,7 +420,7 @@
       <a href="https://www.instagram.com/administrativeresults" target="_blank" rel="noopener">
         <img src="assets/images/instagram-icon.png" alt="Instagram" />
       </a>
-      <a href="https://pepperbox.example.com" target="_blank" rel="noopener">
+      <a href="https://www.pepperbox.tv/" target="_blank" rel="noopener">
         <img src="assets/images/pepperbox-icon.png" alt="Pepperbox" />
       </a>
     </div>
