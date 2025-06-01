@@ -8,11 +8,7 @@
   <title>Home of the AR64A | ADMINISTRATIVE RESULTS</title>
 
   <!-- Favicon -->
-  <link
-    rel="icon"
-    href="assets/images/favicon.png"
-    type="image/png"
-  />
+  <link rel="icon" href="assets/images/favicon.png" type="image/png" />
 
   <!-- Social Sharing Tags -->
   <meta property="og:title" content="Home of the AR64A" />
@@ -22,121 +18,173 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:url" content="https://administrativeresults.github.io/" />
 
-  <!-- Twitter Card (also used by iMessage/Android link previews) -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Home of the AR64A" />
   <meta name="twitter:description" content="The AR64A H-Harness Patrol Rig—private-merc vibes, built for operators." />
   <meta name="twitter:image" content="https://administrativeresults.github.io/assets/images/preview.jpg" />
 
-  <!-- Google Font -->
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
 
   <style>
+    /* Root Variables */
     :root {
-      --bg-dark: #111;
-      --text-light: #eee;
-      --accent: #e4ac45;
-      --font-sans: 'Oswald', sans-serif;
-      --header-footer-bg: #111; /* Dark grey for both header and footer */
+      --header-footer-bg: #fff;      /* white header/footer */
+      --text-dark: #000;             /* black text */
+      --bg-dark: #111;               /* page background */
+      --text-light: #eee;            /* light text on dark */
+      --accent: #e4ac45;             /* yellow accent */
+      --font-sans: 'Inter', sans-serif;
+      --icon-filter: brightness(0) saturate(100%) invert(20%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(120%) contrast(100%);
+      --icon-hover-filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(140%) contrast(110%);
     }
 
-    /* Enable smooth scrolling */
     html {
       scroll-behavior: smooth;
     }
 
-    * {
+    /* Reset & Box-Sizing */
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
+    /* Body & Links */
     body {
       background: var(--bg-dark);
       color: var(--text-light);
       font-family: var(--font-sans);
+      line-height: 1.6;
       overflow-x: hidden;
     }
     a {
       color: var(--accent);
       text-decoration: none;
     }
+    /* Disable underline on hover for all links */
+    a:hover {
+      text-decoration: none;
+    }
 
-    /* ----------------------------------------------------
-       Global .btn class (now outside of any media-query)
-       ---------------------------------------------------- */
+    /* Global .btn */
     .btn {
       background: var(--accent);
       color: #000;
       padding: 0.6rem 1.2rem;
-      font-weight: bold;
+      font-weight: 600;
       border: none;
       cursor: pointer;
       font-size: 1rem;
-      text-decoration: none;
       display: inline-block;
+      border-radius: 0.25rem;
+      transition: background 0.2s ease;
+    }
+    .btn:hover {
+      background: #ffd659;
     }
 
-    /* --------------------
-       Header (logo + nav)
-       -------------------- */
+    /* Header */
     header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
+      height: 4rem;
       background: var(--header-footer-bg);
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
       z-index: 100;
     }
-    /* Logo image + text link to homepage */
     header .logo-link {
       display: flex;
       align-items: center;
       text-decoration: none;
+      color: var(--text-dark);
     }
     header .logo-link img {
-      height: 40px; /* adjust as needed */
+      height: 32px;
       width: auto;
       margin-right: 0.5rem;
+      filter: none;
     }
     header .logo-text {
-      font-size: 1.25rem;
-      font-weight: bold;
-      color: var(--text-light);
-      line-height: 1;
-    }
-    .menu-toggle {
-      display: none;
-      cursor: pointer;
-      font-size: 1.5rem;
-      color: var(--text-light);
-    }
-    header nav {
-      display: flex;
-    }
-    header nav a {
-      margin-left: 1.5rem;
-      font-weight: 500;
-      color: var(--text-light);
+      font-size: 1.125rem;
+      font-weight: 600;
     }
 
-    /* ===============================
-       Hero Section (Mux HLS background)
-       =============================== */
+    /* Desktop nav links */
+    header nav.desktop-nav {
+      display: flex;
+      gap: 2rem;
+    }
+    header nav.desktop-nav a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+    header nav.desktop-nav a:hover {
+      color: var(--accent);
+    }
+
+    /* Mobile hamburger */
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-dark);
+    }
+
+    /* Mobile nav (hidden by default) */
+    header nav#mobileMenu {
+      display: none;
+      position: absolute;
+      top: 4rem;
+      left: 0;
+      width: 100%;
+      background: var(--header-footer-bg);
+      flex-direction: column;
+    }
+    header nav#mobileMenu a {
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #ddd;
+      color: var(--text-dark);
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    header nav#mobileMenu a:hover {
+      background: #f5f5f5;
+    }
+
+    @media (max-width: 768px) {
+      header nav.desktop-nav {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      header nav#mobileMenu.active {
+        display: flex;
+      }
+    }
+
+    /* Hero Section */
     #hero {
       position: relative;
       width: 100%;
-      /* Enforce a 16∶9 aspect ratio on desktop */
-      aspect-ratio: 16 / 9;
-      height: auto; /* Let aspect-ratio govern height */
+      aspect-ratio: 16/9;
       overflow: hidden;
-      margin-top: 4rem; /* account for fixed header height */
+      margin-top: 4rem;
     }
     #hero video {
       position: absolute;
@@ -145,7 +193,6 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center center;
       z-index: 0;
     }
     #hero .overlay {
@@ -167,25 +214,26 @@
       color: #fff;
       font-size: 3rem;
       margin-bottom: 0.5rem;
+      font-weight: 700;
     }
     #hero .overlay p {
       color: #ddd;
       font-size: 1.25rem;
       margin-bottom: 1rem;
       max-width: 90%;
+      font-weight: 400;
     }
     #hero .overlay .btn {
-      /* Inherited from the global .btn above */
+      font-weight: 600;
     }
 
-    /* Make hero shorter on mobile and shrink overlay text */
     @media (max-width: 768px) {
       #hero {
-        aspect-ratio: none; /* ignore aspect-ratio on mobile */
+        aspect-ratio: none;
         height: 40vh;
       }
       #hero .overlay h1 {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
       }
       #hero .overlay p {
         font-size: 0.9rem;
@@ -194,25 +242,21 @@
       }
       #hero .overlay .btn {
         padding: 0.5rem 1rem;
+        font-size: 0.9rem;
       }
     }
 
-    /* ===============================
-       Features Section (model background + two blocks)
-       =============================== */
+    /* Features Section */
     #features {
       position: relative;
       width: 100%;
-      /* Solid white behind everything: */
       background-color: #fff;
-      /* Left-aligned model photo that fills section proportionally: */
       background-image: url('assets/images/model-wear 1.jpg');
       background-position: left center;
       background-repeat: no-repeat;
       background-size: cover;
-      overflow: visible; /* allow rig PNG to spill downward */
-      z-index: 0;
-      padding: 4rem 1rem; /* spacing so text isn’t flush against edges */
+      overflow: visible;
+      padding: 4rem 1rem;
     }
     #features .features-container {
       max-width: 1200px;
@@ -222,20 +266,20 @@
       justify-content: space-between;
       gap: 2rem;
     }
-    /* TEXT block */
     #features .features-text {
       flex: 1 1 45%;
-      color: #000; /* black text for readability */
+      color: #000;
     }
     #features .features-text h2 {
       font-size: 2rem;
       margin-bottom: 0.75rem;
+      font-weight: 600;
     }
     #features .features-text p {
       font-size: 1rem;
       line-height: 1.6;
+      font-weight: 400;
     }
-    /* RIG block */
     #features .features-rig {
       flex: 1 1 45%;
       display: flex;
@@ -243,18 +287,16 @@
       position: relative;
     }
     #features .features-rig img {
-      position: relative; /* so bottom can push it down */
-      bottom: -20%;       /* drop 20% into next section */
-      width: 120%;        /* make it 20% wider than container */
+      position: relative;
+      bottom: -20%;
+      width: 120%;
       max-width: none;
       filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
     }
-
-    /* Shrink features & center on mobile */
     @media (max-width: 768px) {
       #features {
         padding: 2rem 1rem;
-        background-position: right center; /* fixed typo here */
+        background-position: right center;
         background-size: cover;
       }
       #features .features-container {
@@ -270,20 +312,18 @@
         justify-content: center;
       }
       #features .features-rig img {
-        bottom: -40%; /* more overlap on mobile */
-        width: 130%;  /* wider on mobile */
+        bottom: -40%;
+        width: 130%;
       }
     }
 
-    /* ===============================
-       Features List Section (full-width white)
-       =============================== */
+    /* Features List */
     #features-list {
-      width: 100vw;                 /* cover entire viewport width */
-      margin-left: 50%;             /* nudge left by half its width */
-      transform: translateX(-50%);  /* recenter */
-      background: #fff !important;  /* full-width white behind everything */
-      padding: 3rem 2rem 1.5rem;    /* original padding */
+      width: 100vw;
+      margin-left: 50%;
+      transform: translateX(-50%);
+      background: #fff !important;
+      padding: 3rem 2rem 1.5rem;
     }
     #features-list .container {
       max-width: 1200px;
@@ -300,11 +340,13 @@
       font-size: 1.5rem;
       color: var(--accent);
       margin-bottom: 0.5rem;
+      font-weight: 600;
     }
     #features-list .feature p {
       font-size: 1rem;
       color: #000;
       line-height: 1.4;
+      font-weight: 400;
     }
     @media (max-width: 768px) {
       #features-list .container {
@@ -317,9 +359,7 @@
       }
     }
 
-    /* ===============================
-       Rig Description Section
-       =============================== */
+    /* Rig Description */
     #rig-info {
       background: #fff;
       padding: 2rem 2rem 4rem;
@@ -347,6 +387,7 @@
     #rig-info .description p {
       font-size: 1rem;
       line-height: 1.6;
+      font-weight: 400;
     }
     @media (max-width: 768px) {
       #rig-info .container {
@@ -362,9 +403,7 @@
       }
     }
 
-    /* ===============================
-       History Section
-       =============================== */
+    /* History Section */
     #history {
       position: relative;
       padding: 6rem 2rem;
@@ -389,78 +428,91 @@
       color: #fff;
       font-size: 2rem;
       margin-bottom: 1rem;
+      font-weight: 600;
     }
     #history p {
       color: #ddd;
       font-size: 1rem;
       margin-bottom: 1rem;
+      font-weight: 400;
     }
 
-    /* ===============================
-       Footer
-       =============================== */
+    /* Footer */
     footer {
       background: var(--header-footer-bg);
-      padding: 2rem;
-      text-align: center;
-      color: var(--text-light);
-      margin-top: 2rem;
+      color: var(--text-dark);
+      padding: 2rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.05);
     }
-    /* Footer logo button that scrolls to top (#hero) */
-    footer .footer-logo {
-      display: inline-block;
-      margin-bottom: 1rem;
-      cursor: pointer;
+    /* Left: Sponsor Logos */
+    footer .sponsors {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
     }
-    footer .footer-logo img {
-      height: 40px;
+    footer .sponsors a img {
+      height: 32px;
       width: auto;
+      object-fit: contain;
+      filter: var(--icon-filter);
+      transition: filter 0.15s ease;
     }
-    footer nav a {
-      margin: 0 1rem;
-      color: var(--text-light);
+    footer .sponsors a img:hover {
+      filter: var(--icon-hover-filter);
     }
-    footer p {
-      margin-top: 1rem;
+    /* Right: Social Icons */
+    footer .social-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    footer .social-links a img {
+      height: 24px;
+      width: 24px;
+      object-fit: contain;
+      filter: var(--icon-filter);
+      transition: filter 0.15s ease;
+    }
+    footer .social-links a img:hover {
+      filter: var(--icon-hover-filter);
     }
 
-    /* Mobile (≤768px) header/nav */
     @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-      header nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background: var(--header-footer-bg);
-        width: 100%;
+      footer {
         flex-direction: column;
+        text-align: center;
       }
-      header nav a {
-        padding: 1rem;
-        border-bottom: 1px solid #222;
-        margin: 0;
-      }
-      header nav.active {
-        display: flex;
+      footer .sponsors,
+      footer .social-links {
+        margin-bottom: 1rem;
       }
     }
   </style>
 </head>
+
 <body>
   <!-- Header -->
   <header>
-    <!-- Logo image + text link to homepage -->
+    <!-- Left: Logo + Text -->
     <a href="index.html" class="logo-link">
       <img src="assets/images/logo.png" alt="Administrative Results Logo" />
       <span class="logo-text">ADMINISTRATIVE RESULTS</span>
     </a>
 
+    <!-- Desktop navigation links -->
+    <nav class="desktop-nav">
+      <a href="videos.html">Videos</a>
+      <a href="service.html">Customer Service</a>
+    </nav>
+
+    <!-- Mobile hamburger -->
     <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
     <nav id="mobileMenu">
-      <a href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig">Buy</a>
       <a href="videos.html">Videos</a>
       <a href="service.html">Customer Service</a>
     </nav>
@@ -479,8 +531,16 @@
     ></video>
     <div class="overlay">
       <h1>AR64A H-Harness Patrol Rig</h1>
-      <p>The ultimate patrol rig engineered for elite mercenary operations. Lightweight, modular, and built to perform under the harshest conditions.</p>
-      <a class="btn" href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig">Get Yours Now</a>
+      <p>
+        The ultimate patrol rig engineered for elite mercenary operations. Lightweight, modular, and
+        built to perform under the harshest conditions.
+      </p>
+      <a
+        class="btn"
+        href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig"
+      >
+        Get Yours Now
+      </a>
     </div>
   </section>
 
@@ -491,8 +551,8 @@
       <div class="features-text">
         <h2>Versatile Load Capacity</h2>
         <p>
-          Two saddlebags fit dual 2-quart canteens, plus extra pouches for admin gear, radios,
-          and general-purpose storage.
+          Two saddlebags fit dual 2-quart canteens, plus extra pouches for admin gear, radios, and
+          general-purpose storage.
         </p>
       </div>
       <!-- Rig block -->
@@ -502,7 +562,7 @@
     </div>
   </section>
 
-  <!-- Feature Details (full-width white background) -->
+  <!-- Feature Details Section -->
   <section id="features-list">
     <div class="container">
       <div class="feature">
@@ -511,16 +571,22 @@
       </div>
       <div class="feature">
         <h3>Built for Patrol</h3>
-        <p>Overhauled design featuring reinforced stitching, modern elastic, and upgraded buckles for durability.</p>
+        <p>
+          Overhauled design featuring reinforced stitching, modern elastic, and upgraded buckles for
+          durability.
+        </p>
       </div>
       <div class="feature">
         <h3>Versatile Load Capacity</h3>
-        <p>Two saddlebags fit dual 2-quart canteens, plus extra pouches for admin gear, radios, and general-purpose storage.</p>
+        <p>
+          Two saddlebags fit dual 2-quart canteens, plus extra pouches for admin gear, radios, and
+          general-purpose storage.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- Rig Description (YouTube embed + text) -->
+  <!-- Rig Description Section -->
   <section id="rig-info">
     <div class="container">
       <iframe
@@ -531,9 +597,19 @@
         allowfullscreen
       ></iframe>
       <div class="description" style="line-height: 1.8;">
-        <p>The AR64A was redesigned from the ground up — stronger stitching, better elastic, upgraded buckles. It works. It carries everything you need and nothing you don’t. Mags, belt-fed drums, two 2-quart canteens. Radio. Admin. General-purpose junk. It fits.</p>
-        <p>It’s meant to be worn over armor or under a pack. The straps adjust to accommodate the end user.</p>
-        <p>This is probably the last H-Harness you’ll buy — unless you lose it. Dump pouch and additional gear not included.</p>
+        <p>
+          The AR64A was redesigned from the ground up — stronger stitching, better elastic, upgraded
+          buckles. It works. It carries everything you need and nothing you don’t. Mags, belt-fed
+          drums, two 2-quart canteens. Radio. Admin. General-purpose junk. It fits.
+        </p>
+        <p>
+          It’s meant to be worn over armor or under a pack. The straps adjust to accommodate the end
+          user.
+        </p>
+        <p>
+          This is probably the last H-Harness you’ll buy — unless you lose it. Dump pouch and
+          additional gear not included.
+        </p>
         <p><em>Black accents on Ranger Green are pre-production.</em></p>
       </div>
     </div>
@@ -545,10 +621,11 @@
     <div class="content">
       <h2>History of the AR64A</h2>
       <p>
-        The AR64A Rig is based on the South African 32 Battalion H-Harness that saw wide usage in the later Cold War years between 1969-1989. The original SDF 32 Battalion H-Harness has been a staple of Administrative Results from the very beginning. It is our privilege to bring to life a completely enhanced version of this awesome piece of equipment in Ranger Green and Multicam.
+        The AR64A Rig is based on the South African 32 Battalion H-Harness that saw wide usage in the
+        later Cold War years between 1969-1989. The original SDF 32 Battalion H-Harness has been a
+        staple of Administrative Results from the very beginning. It is our privilege to bring to life
+        a completely enhanced version of this awesome piece of equipment in Ranger Green and Multicam.
       </p>
-
-      <!-- New “Get Yours Now” button -->
       <a
         href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig"
         class="btn"
@@ -561,19 +638,31 @@
 
   <!-- Footer -->
   <footer>
-    <!-- Footer logo smoothly scrolls to top (#hero) -->
-    <div class="footer-logo">
-      <a href="#hero">
-        <img src="assets/images/logo.png" alt="Back to top" />
+    <!-- Left: Sponsor Logos -->
+    <div class="sponsors">
+      <a href="https://sponsor1.example.com" target="_blank" rel="noopener">
+        <img src="assets/images/sponsor1-logo.png" alt="Sponsor 1" />
+      </a>
+      <a href="https://sponsor2.example.com" target="_blank" rel="noopener">
+        <img src="assets/images/sponsor2-logo.png" alt="Sponsor 2" />
+      </a>
+      <a href="https://sponsor3.example.com" target="_blank" rel="noopener">
+        <img src="assets/images/sponsor3-logo.png" alt="Sponsor 3" />
       </a>
     </div>
 
-    <nav>
-      <a href="https://administrative-results.myshopify.com/products/ar64a-h-harness-patrol-rig">Buy Now</a> |
-      <a href="https://www.youtube.com/@AdministrativeResults">YouTube</a> |
-      <a href="service.html">Customer Service</a>
-    </nav>
-    <p>&copy; 2025 Administrative Results. All Rights Reserved.</p>
+    <!-- Right: Social Media Icons -->
+    <div class="social-links">
+      <a href="https://www.youtube.com/@AdministrativeResults" target="_blank" rel="noopener">
+        <img src="assets/images/youTube-icon.png" alt="YouTube" />
+      </a>
+      <a href="https://www.instagram.com/administrativeresults" target="_blank" rel="noopener">
+        <img src="assets/images/instagram-icon.png" alt="Instagram" />
+      </a>
+      <a href="https://pepperbox.example.com" target="_blank" rel="noopener">
+        <img src="assets/images/pepperbox-icon.png" alt="Pepperbox" />
+      </a>
+    </div>
   </footer>
 
   <!-- Hamburger Menu Script -->
@@ -583,32 +672,27 @@
     }
   </script>
 
-  <!-- Hls.js (for browsers that don’t support HLS natively) -->
+  <!-- Hls.js -->
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
-    // Replace with your new Mux Playback ID:
     const playbackId = 'pRJd3kY2FKL2TKKRYGYM00HJk1hVM97H0100w01tx71E9zU';
     const hlsUrl = `https://stream.mux.com/${playbackId}.m3u8`;
     const videoEl = document.getElementById('heroVideo');
 
-    // If the browser can play .m3u8 natively (Safari, iOS), set src directly
     if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
       videoEl.src = hlsUrl;
-    }
-    else if (Hls.isSupported()) {
-      // Otherwise use hls.js to load HLS
+    } else if (Hls.isSupported()) {
       const hls = new Hls();
       hls.loadSource(hlsUrl);
       hls.attachMedia(videoEl);
       hls.on(Hls.Events.MANIFEST_PARSED, function () {
-        videoEl.play().catch(err => {
+        videoEl.play().catch((err) => {
           console.warn('Autoplay prevented:', err);
         });
       });
-    }
-    else {
+    } else {
       console.error('HLS is not supported in this browser.');
-      // Optionally show a static fallback (MP4):
+      // Optionally show a static fallback:
       // videoEl.src = 'assets/videos/hero-fallback.mp4';
     }
   </script>
