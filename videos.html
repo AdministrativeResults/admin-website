@@ -2,19 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Tab title -->
   <title>YouTube Portfolio | ADMINISTRATIVE RESULTS</title>
 
   <!-- Favicon -->
-  <link
-    rel="icon"
-    href="assets/images/favicon.png"
-    type="image/png"
-  />
+  <link rel="icon" href="assets/images/favicon.png" type="image/png" />
 
-  <!-- Social Sharing Tags (same as index) -->
+  <!-- Social Sharing Tags -->
   <meta property="og:title" content="Home of the AR64A" />
   <meta property="og:description" content="The AR64A H-Harness Patrol Rig—private-merc vibes, built for operators." />
   <meta property="og:image" content="https://administrativeresults.github.io/assets/images/preview.jpg" />
@@ -27,13 +23,15 @@
   <meta name="twitter:description" content="The AR64A H-Harness Patrol Rig—private-merc vibes, built for operators." />
   <meta name="twitter:image" content="https://administrativeresults.github.io/assets/images/preview.jpg" />
 
-  <!-- Google Font (Oswald) -->
+  <!-- Inter Font (matching index) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
 
-  <!-- Font Awesome (optional) -->
+  <!-- Font Awesome (for icons) -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -43,137 +41,176 @@
   />
 
   <style>
-    /* ==================================================
-       Reset & Root Variables
-       ================================================== */
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Root Variables
+       ───────────────────────────────────────────────────────────────────────────── */
     :root {
-      --font-sans: 'Oswald', sans-serif;
-      --accent-color: #e4ac45;
-      --bg-page: #f5f5f5;
-      --card-bg: #ffffff;
-      --card-border-radius: 0.5rem;
-      --text-dark: #333333;
-      --text-light: #666666;
-
-      /* Header/Footer background (dark grey) */
-      --header-footer-bg: #111111;
-      --header-footer-text: #eeeeee;
+      --font-sans: 'Inter', sans-serif;
+      --background: #ffffff;      /* Entire page background white */
+      --text-color: #000000;      /* All text black */
+      --accent-color: #e4ac45;    /* Yellow accent */
+      --card-bg: #ffffff;         /* Cards also white */
+      --card-radius: 0.5rem;
+      --card-shadow: rgba(0,0,0,0.1) 0px 4px 12px;
+      --icon-filter: none;        /* Icons show in original */
+      --icon-hover-filter: none;
     }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Reset & Box-Sizing */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      background: var(--bg-page);
-      color: var(--text-dark);
-      font-family: var(--font-sans);
-      line-height: 1.5;
 
-      /* Only top padding remains for the fixed header */
-      padding-top: 4.5rem;
-      padding-bottom: 0;
+    /* ─────────────────────────── Body & Links ─────────────────────────── */
+    body {
+      background: var(--background);
+      color: var(--text-color);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      margin: 0;
+      padding-top: 4rem; /* accommodate fixed header */
     }
     a {
       color: var(--accent-color);
       text-decoration: none;
     }
     a:hover {
-      text-decoration: underline;
+      text-decoration: none;
     }
 
-    /* ==================================================
-       Header
-       ================================================== */
+    /* ─────────────────────────── Header ─────────────────────────── */
     header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background: var(--header-footer-bg);
+      height: 4rem;
+      background: var(--background);
+      color: var(--text-color);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
+      justify-content: space-between;
+      padding: 0 2rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
       z-index: 100;
     }
     header .logo-link {
       display: flex;
       align-items: center;
+      text-decoration: none;
+      color: var(--text-color);
     }
     header .logo-link img {
-      height: 40px;
+      height: 32px;
       width: auto;
       margin-right: 0.5rem;
+      filter: none;
     }
     header .logo-text {
-      font-size: 1.25rem;
-      font-weight: bold;
-      color: var(--header-footer-text);
-      line-height: 1;
+      font-size: 1.125rem;
+      font-weight: 600;
     }
-    header .logo-link,
-    header .logo-link:hover,
-    header .logo-link:focus {
-      text-decoration: none;
+    header nav.desktop-nav {
+      display: flex;
+      gap: 2rem;
     }
-
-    /* Hamburger toggle */
+    header nav.desktop-nav a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+    header nav.desktop-nav a:hover {
+      color: var(--accent-color);
+    }
     .menu-toggle {
       display: none;
       font-size: 1.5rem;
-      color: var(--header-footer-text);
+      cursor: pointer;
+      color: var(--text-color);
       background: none;
       border: none;
-      cursor: pointer;
     }
-
-    header nav {
-      display: flex;
-      gap: 1.5rem;
+    header nav#mobileMenu {
+      display: none;
+      position: absolute;
+      top: 4rem;
+      right: 0;
+      width: 100%;
+      background: var(--background);
+      flex-direction: column;
+      text-align: right;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     }
-    header nav a {
+    header nav#mobileMenu a {
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #ddd;
+      color: var(--text-color);
+      font-size: 1rem;
       font-weight: 500;
-      color: var(--header-footer-text);
+      text-align: right;
+    }
+    header nav#mobileMenu a:hover {
+      background: #f5f5f5;
+    }
+    @media (max-width: 768px) {
+      header nav.desktop-nav {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      header nav#mobileMenu.active {
+        display: flex;
+      }
     }
 
-    /* ==================================================
-       Hero Section (Title + Subtitle)
-       ================================================== */
+    /* ───────────────────────── Page Hero ───────────────────────── */
     .page-hero {
+      background: var(--background);
       text-align: center;
-      margin-bottom: 2rem;
-      padding: 0 1rem;
+      margin: 2rem 1rem 3rem;
     }
     .page-title {
       font-size: 2.5rem;
-      color: var(--text-dark);
+      color: var(--text-color);
       margin-bottom: 0.5rem;
+      font-weight: 700;
     }
     .page-subtitle {
       font-size: 1.1rem;
-      color: var(--text-light);
-    }
-
-    /* ==================================================
-       Video Grid Container (30 cards per page)
-       ================================================== */
-    #video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-      max-width: 1200px;
+      color: var(--text-color);
+      opacity: 0.8;
+      max-width: 800px;
       margin: 0 auto;
     }
 
-    /* Each Video Card (16×9 cropping, no black bars) */
+    /* ───────────────────────── Videos Section ───────────────────────── */
+    #videos {
+      background: var(--background);
+      color: var(--text-color);
+      padding: 2rem 0 4rem;
+    }
+
+    /* Video Grid */
+    #video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
     .video-card {
       background: var(--card-bg);
-      border-radius: var(--card-border-radius);
-      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+      border-radius: var(--card-radius);
+      box-shadow: var(--card-shadow);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -182,13 +219,10 @@
     .video-card:hover {
       transform: translateY(-4px);
     }
-    /* Container to enforce 16:9 aspect ratio */
     .video-thumb-container {
       position: relative;
       width: 100%;
-      /* 16:9 aspect ratio */
       padding-top: 56.25%;
-      overflow: hidden;
       background: #000;
     }
     .video-thumb-container img {
@@ -200,7 +234,6 @@
       object-fit: cover;
       object-position: center center;
     }
-
     .video-info {
       padding: 1rem;
       flex: 1;
@@ -210,207 +243,198 @@
     }
     .video-title {
       font-size: 1.1rem;
-      font-weight: bold;
-      color: var(--text-dark);
+      font-weight: 600;
+      color: var(--text-color);
       margin-bottom: 0.5rem;
     }
     .video-views {
       font-size: 0.9rem;
-      color: var(--text-light);
+      color: var(--text-color);
+      opacity: 0.7;
     }
 
-    /* ==================================================
-       Loading Text
-       ================================================== */
+    /* Loading Text */
     #loading {
       text-align: center;
-      margin-top: 2rem;
+      margin: 2rem 0;
       font-size: 1.2rem;
-      color: var(--text-light);
+      color: var(--text-color);
+      opacity: 0.7;
     }
 
-    /* ==================================================
-       Pagination Controls
-       ================================================== */
+    /* Pagination Controls */
     #pagination {
-      margin: 2rem auto;
-      margin-bottom: 4rem;
-      text-align: center;
+      margin: 2rem auto 4rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 1rem;
-      font-size: 1rem;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      padding: 0 1rem;
     }
-    #pagination button {
+    #pagination .page-btn {
       background: var(--accent-color);
       color: #000;
       border: none;
       border-radius: 4px;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.75rem;
       cursor: pointer;
-      font-weight: bold;
+      font-weight: 600;
       transition: background 0.2s ease;
+      font-size: 0.95rem;
     }
-    #pagination button:disabled {
-      background: #ccc;
-      cursor: not-allowed;
-    }
-    #pagination button:hover:not(:disabled) {
+    #pagination .page-btn:hover:not(.current) {
       background: #d39f38;
     }
-    #pagination .page-indicator {
-      color: var(--text-dark);
+    #pagination .page-btn.current {
+      background: var(--text-color);
+      color: #fff;
+      cursor: default;
     }
 
-    /* ==================================================
-       Footer (static, appears only at page bottom)
-       ================================================== */
+    /* ───────────────────────────── Footer ───────────────────────────── */
     footer {
-      background: var(--header-footer-bg);
-      color: var(--header-footer-text);
-      padding: 1.5rem 2rem;
-      text-align: center;
+      background: var(--background);
+      color: var(--text-color);
+      padding: 2rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
     }
-    footer .footer-logo {
-      display: inline-block;
-      margin-bottom: 0.75rem;
-      cursor: pointer;
+    footer .sponsors {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
     }
-    footer .footer-logo img {
-      height: 40px;
+    footer .sponsors a img {
+      height: 32px;
       width: auto;
+      object-fit: contain;
+      filter: var(--icon-filter);
+      transition: filter 0.15s ease;
     }
-    footer nav a {
-      color: var(--header-footer-text);
-      margin: 0 0.75rem;
-      font-weight: 500;
+    footer .sponsors a img:hover {
+      filter: var(--icon-hover-filter);
     }
-    footer p {
-      margin-top: 0.75rem;
-      font-size: 0.9rem;
+    footer .social-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
     }
-
-    /* ==================================================
-       Responsive: collapse header nav on small screens
-       ================================================== */
+    footer .social-links a img {
+      height: 24px;
+      width: 24px;
+      object-fit: contain;
+      filter: var(--icon-filter);
+      transition: filter 0.15s ease;
+    }
+    footer .social-links a img:hover {
+      filter: var(--icon-hover-filter);
+    }
     @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-      header nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background: var(--header-footer-bg);
-        width: 100%;
+      footer {
         flex-direction: column;
-        gap: 0;
+        text-align: center;
       }
-      header nav a {
-        padding: 1rem 2rem;
-        border-bottom: 1px solid #222;
-        margin: 0;
-      }
-      header nav.active {
-        display: flex;
+      footer .sponsors,
+      footer .social-links {
+        margin-bottom: 1rem;
       }
     }
   </style>
 </head>
-<body>
 
-  <!-- ===============================
-       Header (with hamburger on mobile)
-       =============================== -->
+<body>
+  <!-- Header -->
   <header>
     <a href="index.html" class="logo-link">
       <img src="assets/images/logo.png" alt="Administrative Results Logo" />
       <span class="logo-text">ADMINISTRATIVE RESULTS</span>
     </a>
 
-    <!-- Hamburger toggle button -->
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav class="desktop-nav">
+      <a href="index.html">Home</a>
+      <a href="videos.html">Videos</a>
+      <a href="service.html">Customer Service</a>
+    </nav>
 
-    <nav id="headerNav">
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="mobileMenu">
       <a href="index.html">Home</a>
       <a href="videos.html">Videos</a>
       <a href="service.html">Customer Service</a>
     </nav>
   </header>
 
-  <!-- ===============================
-       Hero Title & Subtitle (no video, per request)
-       =============================== -->
+  <!-- Page Hero (Title & Subtitle) -->
   <div class="page-hero">
     <h1 class="page-title">Please watch...</h1>
     <p class="page-subtitle">
-      At Administrative Results we strive to educate where we can, and entertain all the time. <br />
+      At Administrative Results we strive to educate where we can, and entertain all the time.<br />
       We are passionate about the 2nd Amendment and the way of life it is meant to preserve.
     </p>
   </div>
 
-  <!-- =========================================================
-       Video Grid (cards will be dynamically inserted here)
-       ========================================================= -->
-  <div id="video-grid"></div>
-  <p id="loading">Loading videos… please wait.</p>
+  <!-- Videos Section -->
+  <section id="videos">
+    <!-- Video Grid -->
+    <div id="video-grid"></div>
+    <p id="loading">Loading videos… please wait.</p>
 
-  <!-- =========================================================
-       Pagination Controls (Prev / Next / Page #)
-       ========================================================= -->
-  <div id="pagination">
-    <button id="prevBtn" disabled>Previous</button>
-    <span class="page-indicator">
-      Page <span id="currentPage">1</span> of <span id="totalPages">1</span>
-    </span>
-    <button id="nextBtn" disabled>Next</button>
-  </div>
+    <!-- Pagination Controls -->
+    <div id="pagination"></div>
+  </section>
 
-  <!-- ===============================
-       Footer (static, appears only at bottom of content)
-       =============================== -->
+  <!-- Footer -->
   <footer>
-    <div class="footer-logo">
-      <a href="#hero">
-        <img src="assets/images/logo.png" alt="Back to top" />
+    <div class="sponsors">
+      <a href="https://sponsor1.example.com" target="_blank" rel="noopener">
+        <img src="assets/images/sponsor1-logo.png" alt="Sponsor 1" />
+      </a>
+      <a href="https://sponsor2.example.com" target="_blank" rel="noopener">
+        <img src="assets/images/sponsor2-logo.png" alt="Sponsor 2" />
+      </a>
+      <a href="https://sponsor3.example.com" target="_blank" rel="noopener">
+        <img src="assets/images/sponsor3-logo.png" alt="Sponsor 3" />
       </a>
     </div>
-    <nav>
-      <a href="index.html">Home</a> |
-      <a href="videos.html">Videos</a> |
-      <a href="service.html">Customer Service</a>
-    </nav>
-    <p>&copy; 2025 Administrative Results. All Rights Reserved.</p>
+
+    <div class="social-links">
+      <a href="https://www.youtube.com/@AdministrativeResults" target="_blank" rel="noopener">
+        <img src="assets/images/youTube-icon.png" alt="YouTube" />
+      </a>
+      <a href="https://www.instagram.com/administrativeresults" target="_blank" rel="noopener">
+        <img src="assets/images/instagram-icon.png" alt="Instagram" />
+      </a>
+      <a href="https://pepperbox.example.com" target="_blank" rel="noopener">
+        <img src="assets/images/pepperbox-icon.png" alt="Pepperbox" />
+      </a>
+    </div>
   </footer>
 
-  <!-- ===============================
-       Script: Fetch + Render + Pagination + Toggle Menu
-       =============================== -->
+  <!-- Toggle Mobile Menu Script -->
   <script>
-    // Toggle mobile menu
     function toggleMenu() {
-      document.getElementById('headerNav').classList.toggle('active');
+      document.getElementById('mobileMenu').classList.toggle('active');
     }
+  </script>
 
-    // ─────────────────────────────────────────────
-    //  1) CONFIGURATION
-    // ─────────────────────────────────────────────
-    const API_KEY    = 'AIzaSyDjwfqf775NaJ0vJyN7eRbp69EFzcNI6WA';        // ← Your YouTube Data API v3 key
-    const CHANNEL_ID = 'UC3QjBcBCtS4I-OWKpTBBFWA';                       // ← The target channel’s ID
-    const PAGE_SIZE  = 30;                                               // videos per page
+  <!-- YouTube + Pagination Script -->
+  <script>
+    // 1) CONFIGURATION
+    const API_KEY    = 'AIzaSyDjwfqf775NaJ0vJyN7eRbp69EFzcNI6WA'; // Your YouTube API key
+    const CHANNEL_ID = 'UC3QjBcBCtS4I-OWKpTBBFWA';                  // Channel ID
+    const PAGE_SIZE  = 30;                                          // videos per page
 
-    // ─────────────────────────────────────────────
-    //  2) UTILITY: Human-Readable Number Formatter
-    // ─────────────────────────────────────────────
+    // 2) FORMAT NUMBERS
     function formatNumber(num) {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    // ─────────────────────────────────────────────
-    //  3) FETCH “Uploads” Playlist ID
-    // ─────────────────────────────────────────────
+    // 3) FETCH UPLOADS PLAYLIST ID
     async function fetchUploadsPlaylistId() {
       const endpoint = `https://www.googleapis.com/youtube/v3/channels`
         + `?part=contentDetails&id=${CHANNEL_ID}&key=${API_KEY}`;
@@ -423,9 +447,7 @@
       }
     }
 
-    // ─────────────────────────────────────────────
-    //  4) FETCH ALL VIDEO IDs from that Playlist
-    // ─────────────────────────────────────────────
+    // 4) FETCH ALL VIDEO IDs
     async function fetchAllVideoIds(playlistId) {
       let videoIds = [];
       let nextPageToken = '';
@@ -450,13 +472,10 @@
       return videoIds;
     }
 
-    // ─────────────────────────────────────────────
-    //  5) FETCH METADATA (snippet + statistics + contentDetails)
-    // ─────────────────────────────────────────────
+    // 5) FETCH VIDEO DETAILS
     async function fetchVideoDetails(allIds) {
       const BATCH_SIZE = 50;
       let details = [];
-
       for (let i = 0; i < allIds.length; i += BATCH_SIZE) {
         const batchIds = allIds.slice(i, i + BATCH_SIZE).join(',');
         const url = new URL('https://www.googleapis.com/youtube/v3/videos');
@@ -474,19 +493,13 @@
       return details;
     }
 
-    // ─────────────────────────────────────────────
-    //  6) FILTER OUT “Shorts” (videos < 60s) & SORT LATEST FIRST
-    // ─────────────────────────────────────────────
+    // 6) FILTER & SORT VIDEOS
     function filterLongFormVideos(videoItems) {
       return videoItems
         .filter(item => {
-          // contentDetails.duration is ISO 8601, e.g. "PT5M20S", "PT45S", "PT1H2M3S"
           const dur = item.contentDetails.duration;
-          // If it matches exactly “PT<number>S” → less than 60s → skip
-          // Otherwise keep (so PT1MxxS, PT2M, PT1H… are long-form)
           return !/^PT\d+S$/.test(dur);
         })
-        // Sort by publish date (newest first)
         .sort((a, b) => {
           const dateA = new Date(a.snippet.publishedAt).getTime();
           const dateB = new Date(b.snippet.publishedAt).getTime();
@@ -494,13 +507,10 @@
         });
     }
 
-    // ─────────────────────────────────────────────
-    //  7) RENDER A SINGLE PAGE OF CARDS
-    // ─────────────────────────────────────────────
+    // 7) RENDER VIDEO CARDS
     function renderVideoCardsPage(videoItems, pageNum, pageSize) {
       const grid = document.getElementById('video-grid');
-      grid.innerHTML = ''; // clear existing
-
+      grid.innerHTML = '';
       const startIdx = (pageNum - 1) * pageSize;
       const endIdx   = Math.min(startIdx + pageSize, videoItems.length);
       const pageItems = videoItems.slice(startIdx, endIdx);
@@ -512,18 +522,16 @@
         const videoId  = item.id;
         const watchLink = `https://www.youtube.com/watch?v=${videoId}`;
 
-        // <div class="video-card">
         const card = document.createElement('div');
         card.classList.add('video-card');
 
-        // 16×9 thumbnail container
         const thumbContainer = document.createElement('div');
         thumbContainer.classList.add('video-thumb-container');
 
         const thumbImg = document.createElement('img');
         thumbImg.src = thumbUrl;
         thumbImg.alt = title;
-        // Wrap in <a>
+
         const thumbAnchor = document.createElement('a');
         thumbAnchor.href = watchLink;
         thumbAnchor.target = '_blank';
@@ -533,7 +541,6 @@
         thumbContainer.appendChild(thumbAnchor);
         card.appendChild(thumbContainer);
 
-        // Info container
         const info = document.createElement('div');
         info.classList.add('video-info');
 
@@ -552,45 +559,40 @@
       });
     }
 
-    // ─────────────────────────────────────────────
-    //  8) PAGINATION CONTROLS LOGIC
-    // ─────────────────────────────────────────────
-    let allFilteredVideos = []; // will hold filtered & sorted videos
+    // 8) PAGINATION CONTROLS
+    let allFilteredVideos = [];
     let currentPage = 1;
     let totalPages = 1;
 
     function updatePaginationControls() {
-      document.getElementById('currentPage').textContent = currentPage;
-      document.getElementById('totalPages').textContent  = totalPages;
-
-      document.getElementById('prevBtn').disabled = (currentPage <= 1);
-      document.getElementById('nextBtn').disabled = (currentPage >= totalPages);
+      const pagination = document.getElementById('pagination');
+      pagination.innerHTML = '';
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.classList.add('page-btn');
+        if (i === currentPage) {
+          btn.classList.add('current');
+          btn.disabled = true;
+        }
+        btn.addEventListener('click', () => {
+          showPage(i);
+        });
+        pagination.appendChild(btn);
+      }
     }
 
     function showPage(pageNum) {
       currentPage = pageNum;
       renderVideoCardsPage(allFilteredVideos, currentPage, PAGE_SIZE);
       updatePaginationControls();
-      // Scroll up so user sees new cards
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    document.getElementById('prevBtn').addEventListener('click', () => {
-      if (currentPage > 1) showPage(currentPage - 1);
-    });
-    document.getElementById('nextBtn').addEventListener('click', () => {
-      if (currentPage < totalPages) showPage(currentPage + 1);
-    });
-
-    // ─────────────────────────────────────────────
-    //  9) MAIN: Orchestrate All Calls + Initialize
-    // ─────────────────────────────────────────────
+    // 9) INITIALIZATION
     async function init() {
       try {
-        // 1) Get uploads playlist
         const uploadsPlaylistId = await fetchUploadsPlaylistId();
-
-        // 2) Get all video IDs from that playlist
         const allVideoIds = await fetchAllVideoIds(uploadsPlaylistId);
 
         if (!allVideoIds.length) {
@@ -598,10 +600,7 @@
           return;
         }
 
-        // 3) Fetch details for all videos (snippet + statistics + contentDetails)
         const videoDetails = await fetchVideoDetails(allVideoIds);
-
-        // 4) Filter out "shorts" (< 60s) and sort by newest first
         allFilteredVideos = filterLongFormVideos(videoDetails);
 
         if (!allFilteredVideos.length) {
@@ -609,20 +608,15 @@
           return;
         }
 
-        // 5) Calculate pagination
         totalPages = Math.ceil(allFilteredVideos.length / PAGE_SIZE);
-
-        // 6) Hide loading text & show first page
         document.getElementById('loading').style.display = 'none';
         showPage(1);
-      }
-      catch (err) {
+      } catch (err) {
         console.error(err);
         document.getElementById('loading').textContent = 'An error occurred. Check console for details.';
       }
     }
 
-    // Kick off once DOM is ready
     window.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
